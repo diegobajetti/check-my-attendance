@@ -108,7 +108,11 @@ Upon opening the deployed GitHub Pages site, the page might be blank until refre
    basename={process.env.PUBLIC_URL}
    ```
 
-   Alternatively, run the following command to identify and replace the property.
+   Alternatively, run the following two commands to identify and replace the property:
+
+   ```sh
+   cd $(git rev-parse --show-cdup)/src
+   ```
 
    ```sh
    grep -RIl --include=\*.js '<BrowserRouter' | xargs sed -i 's/<BrowserRouter/<BrowserRouter basename={process.env.PUBLIC_URL}/g'
