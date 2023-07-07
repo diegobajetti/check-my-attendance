@@ -1,13 +1,13 @@
 {
-  "main.css": "/check-my-attendance/static/css/main.5d4e99f5.chunk.css",
-  "main.js": "/check-my-attendance/static/js/main.d621d1ab.chunk.js",
-  "main.js.map": "/check-my-attendance/static/js/main.d621d1ab.chunk.js.map",
+  "main.css": "/check-my-attendance/static/css/main.4d088c31.chunk.css",
+  "main.js": "/check-my-attendance/static/js/main.43572548.chunk.js",
+  "main.js.map": "/check-my-attendance/static/js/main.43572548.chunk.js.map",
   "runtime~main.js": "/check-my-attendance/static/js/runtime~main.83ef22a4.js",
   "runtime~main.js.map": "/check-my-attendance/static/js/runtime~main.83ef22a4.js.map",
-  "static/js/2.8d1c3d7c.chunk.js": "/check-my-attendance/static/js/2.8d1c3d7c.chunk.js",
-  "static/js/2.8d1c3d7c.chunk.js.map": "/check-my-attendance/static/js/2.8d1c3d7c.chunk.js.map",
+  "static/js/2.0ad0dc49.chunk.js": "/check-my-attendance/static/js/2.0ad0dc49.chunk.js",
+  "static/js/2.0ad0dc49.chunk.js.map": "/check-my-attendance/static/js/2.0ad0dc49.chunk.js.map",
   "index.html": "/check-my-attendance/index.html",
-  "precache-manifest.a973a5a8db4b2660caad763bfccec115.js": "/check-my-attendance/precache-manifest.a973a5a8db4b2660caad763bfccec115.js",
+  "precache-manifest.0f110ab8e75ddf7cf3439794e82d7a8f.js": "/check-my-attendance/precache-manifest.0f110ab8e75ddf7cf3439794e82d7a8f.js",
   "service-worker.js": "/check-my-attendance/service-worker.js",
-  "static/css/main.5d4e99f5.chunk.css.map": "/check-my-attendance/static/css/main.5d4e99f5.chunk.css.map"
+  "static/css/main.4d088c31.chunk.css.map": "/check-my-attendance/static/css/main.4d088c31.chunk.css.map"
 }
