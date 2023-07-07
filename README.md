@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# — Check My Attendance —
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deploy a React application. See a live, interactive version of the website [here][live-website].
 
-## Available Scripts
+## Getting Started: Contributing
 
-In the project directory, you can run:
+### 1. Clone the repository
 
-### `npm start`
+1. Navigate to your desired directory where you will be storing the project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository by executing the following command.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```bash
+   git clone https://github.com/diegobajetti/check-my-attendance.git
+   ```
 
-### `npm test`
+### 2. Install the required dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Install the required dependencies by executing the following command.
 
-### `npm run build`
+   ```bash
+   npm i
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   > It is assumed that you already have `npm` installed. If not, refer to the [official documentation][npm-doc].
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Deploy the React app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Commit and push any untracked files to the GitHub repository.
 
-### `npm run eject`
+1. Build the app.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm run deploy
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   By executing the command above, the `predeploy` and `deploy` scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the `gh-pages` branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL](package-json-homepage) whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Common Issues
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Broken Media Display
 
-## Learn More
+More than likely, images and/or videos will not render in the deployed site using common `src` linking:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```html
+<img src="./images/img-1.jpg" />
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Since the website is deployed under the [`homepage`](package-json-homepage) URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case.
 
-### Code Splitting
+1. Diagnose the type of media.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   1. _Background Image_
 
-### Analyzing the Bundle Size
+      1. Open the `.css` file that imports an image with the `background-image` property.
+      1. Change the format of the `url()` value.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+         ```css
+         * {
+           background-image: url("https://diegobajetti.github.io/seg3125_p2.github.io/images/img-1.jpg");
+         }
+         ```
 
-### Making a Progressive Web App
+         > The `url()` value should follow this format: `https://{github_username}.github.io/{repo_name}/{file_path}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   1. _Image Tag_
 
-### Advanced Configuration
+      1. Open the `.html` file that utilizes the `<img/>` tag.
+      1. Change the format of the `src` attribute.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+         ```html
+         <img src="./seg3125_p2.github.io/images/img-1.jpg" />
+         ```
 
-### Deployment
+         > The `src` attribute's value should follow this format: `./{repo_name}/{file_path}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   1. _Background Video_
 
-### `npm run build` fails to minify
+      1. Open the `.html` file that utilizes the `<video/>` tag.
+      1. Change the format of the `src` attribute.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+         ```html
+         <video src={"./seg3125_p2.github.io/videos/video-1.mp4"}/>
+         ```
+
+         > The `src` attribute's value should follow this format: `{"./<repo_name>/<file_path>"}`
+
+   Alternatively, run the following two commands to match the three cases above:
+
+   ```sh
+   cd $(git rev-parse --show-cdup)/src
+   ```
+
+   ```sh
+   grep -RIlxP --include=\*.{html,css,js} '^.*\b(?:src=|background\-image:).*$'
+   ```
+
+   `grep` is a utility for searching strings through multiple text files. Here, it is invoked with the following parameters:
+
+   - `R` — reads all files under each directory, recursively, across all symbolic links
+   - `I` — ignore binary files; process a binary file as if it did not contain matching data
+   - `l` — print the name of each file for which a match was found
+   - `x` — select only those matches that exactly match the whole line
+   - `P` — interpret patterns as Perl-compatible regular expressions (PCREs)
+   - `--include=` — search only files whose base name matches the pattern
+   - Regex — find an explanation for the regular expression [here][regex-example]
+
+1. Create a `.env` file
+
+   1. Navigate to the root of the project.
+
+      ```bash
+      cd $(git rev-parse --show-cdup)
+      ```
+
+   1. Create a `.env` file.
+
+      ```bash
+      touch .env
+      ```
+
+   1. Add the following property.
+
+      ```bash
+      echo "PUBLIC_URL=." >> .env
+      ```
+
+Push these changes to the remote repository and [deploy](#4-deploy-the-react-app) the application. This is not a foolproof method as it requires any `img` and `video` tags to be changed back in order to render the images when running locally. Additionally, it is **important** that these changes are not pushed to the remote repository, and to reference the external repository _before_ [deploying](#4-deploy-the-react-app). That is, change all references to image/video files anytime the application is deployed to the remote as shown above, and back to their original values when running locally.
+
+[gh-pages]: https://github.com/gitname/react-gh-pages
+[live-website]: https://diegobajetti.github.io/check-my-attendance/
+[npm-doc]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+[package-json-homepage]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L4
+[github-action]: https://github.com/diegobajetti/check-my-attendance/actions
+[regex-example]: https://regex101.com/r/iUYcBT/1
