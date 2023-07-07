@@ -1,6 +1,6 @@
 import {
   faBars,
-  faStaffSnake,
+  faShekelSign,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,8 +28,8 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          PyCodeX
-          <FontAwesomeIcon className="fa-staff-snake" icon={faStaffSnake} />
+          Check My Attendance
+          <FontAwesomeIcon className="fa-shekel-sign" icon={faShekelSign} />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <FontAwesomeIcon

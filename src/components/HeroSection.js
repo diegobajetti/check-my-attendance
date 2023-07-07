@@ -26,8 +26,8 @@ function HeroSection() {
         muted="muted"
         playsInline="playsInline"
       />
-      <h1>PyCodeX</h1>
-      <p>with open('PyCodeX .txt', 'r') as file:</p>
+      <h1>Check My Attendance</h1>
+      <p>with open('check-my-attendance.txt', 'r') as file:</p>
       <div className="hero-btns">
         <Button
           className="btns"
