@@ -46,7 +46,7 @@ More than likely, images and/or videos will not render in the deployed site usin
 <img src="./images/img-1.jpg" />
 ```
 
-Since the website is deployed under the [`homepage`][package-json-homepage] URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case. There is a simple command to automate this process further below.
+Since the website is deployed under the [`homepage`][package-json-homepage] URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case.
 
 1. Diagnose the type of media.
 
@@ -57,35 +57,24 @@ Since the website is deployed under the [`homepage`][package-json-homepage] URL,
 
          ```css
          * {
-           background-image: url("https://diegobajetti.github.io/seg3125_p2.github.io/images/img-1.jpg");
+           background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
          }
          ```
 
          > The `url()` value should follow this format: `https://{github_username}.github.io/{repo_name}/{file_path}`
 
-   1. _Image Tag_
+   1. _Image/Video Tag_
 
-      1. Open the `.html` file that utilizes the `<img/>` tag.
+      1. Open the `.html` file that utilizes the `<img/>` or `<video/>` tag.
       1. Change the format of the `src` attribute.
 
          ```html
-         <img src="./seg3125_p2.github.io/images/img-1.jpg" />
+         <img src={process.env.PUBLIC_URL + "/images/img-1.jpg"} />
          ```
 
-         > The `src` attribute's value should follow this format: `./{repo_name}/{file_path}`
+         > The `src` attribute's value should follow this format: `process.env.PUBLIC_URL + "/{file_path}"`
 
-   1. _Background Video_
-
-      1. Open the `.html` file that utilizes the `<video/>` tag.
-      1. Change the format of the `src` attribute.
-
-         ```html
-         <video src={"./seg3125_p2.github.io/videos/video-1.mp4"}/>
-         ```
-
-         > The `src` attribute's value should follow this format: `{"./<repo_name>/<file_path>"}`
-
-   Alternatively, run the following two commands to match the three cases above:
+   Alternatively, run the following two commands to match the two cases above:
 
    ```sh
    cd $(git rev-parse --show-cdup)/src
@@ -105,27 +94,27 @@ Since the website is deployed under the [`homepage`][package-json-homepage] URL,
    - `--include=` — search only files whose base name matches the pattern
    - Regex — find an explanation for the regular expression [here][regex-example]
 
-1. Create a `.env` file
+1. Push these changes to the remote repository and [deploy](#3-deploy-the-react-app) the application. The global `process.env.PUBLIC_URL` variable allows for the images to be displayed when running locally _and_ when being deployed to the remote.
 
-   1. Navigate to the root of the project.
+### Blank Page
 
-      ```bash
-      cd $(git rev-parse --show-cdup)
-      ```
+Upon opening the deployed GitHub Pages site, the page might be blank until refreshing the browser. Follow the steps below to fix this.
 
-   1. Create a `.env` file.
+1. Identify any `BrowserRouter` tags in the codebase.
 
-      ```bash
-      touch .env
-      ```
+1. Add the following property.
 
-   1. Add the following property.
+   ```html
+   basename={process.env.PUBLIC_URL}
+   ```
 
-      ```bash
-      echo "PUBLIC_URL=." >> .env
-      ```
+   Alternatively, run the following command to identify and replace the property.
 
-Push these changes to the remote repository and [deploy](#3-deploy-the-react-app) the application. This is not a foolproof method as it requires any `img` and `video` tags to be changed back in order to render the images when running locally. Additionally, it is **important** that these changes are not pushed to the remote repository, and to reference the external repository _before_ [deploying](#3-deploy-the-react-app). That is, change all references to image/video files anytime the application is deployed to the remote as shown above, and back to their original values when running locally.
+   ```sh
+   grep -RIl --include=\*.js '<BrowserRouter' | xargs sed -i 's/<BrowserRouter/<BrowserRouter basename={process.env.PUBLIC_URL}/g'
+   ```
+
+Specifying the `basename={process.env.PUBLIC_URL}` in the routing root allows the router to extract the base URL of the project and properly display the site.
 
 [gh-pages]: https://github.com/gitname/react-gh-pages
 [live-website]: https://diegobajetti.github.io/check-my-attendance/
