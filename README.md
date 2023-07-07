@@ -34,7 +34,7 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
    npm run deploy
    ```
 
-   By executing the command above, the `predeploy` and `deploy` scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the `gh-pages` branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL](package-json-homepage) whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
+   By executing the command above, the [`predeploy`][package-json-predeploy] and [`deploy`][package-json-deploy] scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the `gh-pages` branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL][package-json-homepage] whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
 
 ## Common Issues
 
@@ -46,7 +46,7 @@ More than likely, images and/or videos will not render in the deployed site usin
 <img src="./images/img-1.jpg" />
 ```
 
-Since the website is deployed under the [`homepage`](package-json-homepage) URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case.
+Since the website is deployed under the [`homepage`][package-json-homepage] URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case.
 
 1. Diagnose the type of media.
 
@@ -125,11 +125,13 @@ Since the website is deployed under the [`homepage`](package-json-homepage) URL,
       echo "PUBLIC_URL=." >> .env
       ```
 
-Push these changes to the remote repository and [deploy](#4-deploy-the-react-app) the application. This is not a foolproof method as it requires any `img` and `video` tags to be changed back in order to render the images when running locally. Additionally, it is **important** that these changes are not pushed to the remote repository, and to reference the external repository _before_ [deploying](#4-deploy-the-react-app). That is, change all references to image/video files anytime the application is deployed to the remote as shown above, and back to their original values when running locally.
+Push these changes to the remote repository and [deploy](#3-deploy-the-react-app) the application. This is not a foolproof method as it requires any `img` and `video` tags to be changed back in order to render the images when running locally. Additionally, it is **important** that these changes are not pushed to the remote repository, and to reference the external repository _before_ [deploying](#3-deploy-the-react-app). That is, change all references to image/video files anytime the application is deployed to the remote as shown above, and back to their original values when running locally.
 
 [gh-pages]: https://github.com/gitname/react-gh-pages
 [live-website]: https://diegobajetti.github.io/check-my-attendance/
 [npm-doc]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 [package-json-homepage]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L4
+[package-json-predeploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L24
+[package-json-deploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L25
 [github-action]: https://github.com/diegobajetti/check-my-attendance/actions
 [regex-example]: https://regex101.com/r/iUYcBT/1
