@@ -6,7 +6,7 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
 
 ### 1. Clone the repository
 
-1. Navigate to your desired directory where you will be storing the project.
+1. Navigate to the desired directory where the project will be stored.
 
 1. Clone the repository by executing the following command.
 
@@ -22,7 +22,7 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
    npm i
    ```
 
-   > It is assumed that you already have `npm` installed. If not, refer to the [official documentation][npm-doc].
+   > It is assumed that `npm` is already installed. If not, refer to the [official documentation][npm-doc].
 
 ### 3. Deploy the React app
 
@@ -34,7 +34,7 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
    npm run deploy
    ```
 
-   By executing the command above, the [`predeploy`][package-json-predeploy] and [`deploy`][package-json-deploy] scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the `gh-pages` branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL][package-json-homepage] whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
+   By executing the command above, the [`predeploy`][package-json-predeploy] and [`deploy`][package-json-deploy] scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the [`gh-pages`][gh-pages-branch] branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL][package-json-homepage] whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
 
 ## Common Issues
 
@@ -46,7 +46,7 @@ More than likely, images and/or videos will not render in the deployed site usin
 <img src="./images/img-1.jpg" />
 ```
 
-Since the website is deployed under the [`homepage`][package-json-homepage] URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case.
+Since the website is deployed under the [`homepage`][package-json-homepage] URL, it will not recognize the source file for the image or video using local pathing. To overcome this, follow the steps below to change all `src` linking, depending on the use case. There is a simple command to automate this process further below.
 
 1. Diagnose the type of media.
 
@@ -133,5 +133,6 @@ Push these changes to the remote repository and [deploy](#3-deploy-the-react-app
 [package-json-homepage]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L4
 [package-json-predeploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L24
 [package-json-deploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L25
+[gh-pages-branch]: https://github.com/diegobajetti/check-my-attendance/tree/gh-pages
 [github-action]: https://github.com/diegobajetti/check-my-attendance/actions
 [regex-example]: https://regex101.com/r/iUYcBT/1
