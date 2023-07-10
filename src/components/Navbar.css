@@ -1,4 +1,4 @@
-.navbar {
+.navbar-nav {
 	background: linear-gradient(
 		90deg,
 		rgb(28, 27, 27) 0%,
@@ -37,7 +37,7 @@
 	font-size: 1.8rem;
 }
 
-.nav-menu {
+.nav-nav-menu {
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	list-style: none;
@@ -45,6 +45,7 @@
 	width: 60vw;
 	justify-content: end;
 	margin-right: 1rem;
+	margin-bottom: 0;
 }
 
 .nav-item {

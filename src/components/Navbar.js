@@ -25,7 +25,7 @@ function Navbar() {
 	window.addEventListener("resize", showButton);
 
 	return (
-		<nav className="navbar">
+		<nav className="navbar-nav">
 			<div className="navbar-container">
 				<Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
 					Check My Attendance
@@ -40,7 +40,7 @@ function Navbar() {
 						className={click ? "fas fa-times" : "fas fa-bars"}
 					/>
 				</div>
-				<ul className={click ? "nav-menu active" : "nav-menu"}>
+				<ul className={click ? "nav-nav-menu active" : "nav-nav-menu"}>
 					<li className="nav-item">
 						<Link
 							to="/"
@@ -70,7 +70,7 @@ function Navbar() {
 					</li>
 				</ul>
 				{button && (
-					<Button buttonStyle={"btn--outline"}>
+					<Button buttonStyle={"btn--outline"} isLink>
 						Professor Sign In
 					</Button>
 				)}
