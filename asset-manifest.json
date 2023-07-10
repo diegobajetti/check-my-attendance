@@ -1,13 +1,13 @@
 {
-  "main.css": "/check-my-attendance/static/css/main.4d088c31.chunk.css",
-  "main.js": "/check-my-attendance/static/js/main.43572548.chunk.js",
-  "main.js.map": "/check-my-attendance/static/js/main.43572548.chunk.js.map",
+  "main.css": "/check-my-attendance/static/css/main.d16dca8b.chunk.css",
+  "main.js": "/check-my-attendance/static/js/main.8f81ee6d.chunk.js",
+  "main.js.map": "/check-my-attendance/static/js/main.8f81ee6d.chunk.js.map",
   "runtime~main.js": "/check-my-attendance/static/js/runtime~main.83ef22a4.js",
   "runtime~main.js.map": "/check-my-attendance/static/js/runtime~main.83ef22a4.js.map",
-  "static/js/2.0ad0dc49.chunk.js": "/check-my-attendance/static/js/2.0ad0dc49.chunk.js",
-  "static/js/2.0ad0dc49.chunk.js.map": "/check-my-attendance/static/js/2.0ad0dc49.chunk.js.map",
+  "static/js/2.d95ffb21.chunk.js": "/check-my-attendance/static/js/2.d95ffb21.chunk.js",
+  "static/js/2.d95ffb21.chunk.js.map": "/check-my-attendance/static/js/2.d95ffb21.chunk.js.map",
   "index.html": "/check-my-attendance/index.html",
-  "precache-manifest.0f110ab8e75ddf7cf3439794e82d7a8f.js": "/check-my-attendance/precache-manifest.0f110ab8e75ddf7cf3439794e82d7a8f.js",
+  "precache-manifest.b05d99c08bc8980ddfe502922aa60be1.js": "/check-my-attendance/precache-manifest.b05d99c08bc8980ddfe502922aa60be1.js",
   "service-worker.js": "/check-my-attendance/service-worker.js",
-  "static/css/main.4d088c31.chunk.css.map": "/check-my-attendance/static/css/main.4d088c31.chunk.css.map"
+  "static/css/main.d16dca8b.chunk.css.map": "/check-my-attendance/static/css/main.d16dca8b.chunk.css.map"
 }
