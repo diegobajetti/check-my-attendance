@@ -33,12 +33,12 @@ const studentReducer = (
 			const { firstName = "", lastName = "", id = "" } = action.data;
 			return {
 				...state,
-				currStudent: {
-					firstName: "",
-					lastName: "",
-					id: "",
-					isNew: true,
-				},
+				// currStudent: {
+				// 	firstName: "",
+				// 	lastName: "",
+				// 	id: "",
+				// 	isNew: true,
+				// },
 				studentList: [
 					...studentList,
 					{ firstName, lastName, id, isNew: false },

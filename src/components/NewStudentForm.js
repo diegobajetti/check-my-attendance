@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import {
 	setStudentFirstName,
@@ -16,24 +16,37 @@ export const NewStudentForm = ({
 	dispatchSetStudentLastName,
 	dispatchSetStudentId,
 }) => {
+	const firstNameRef = useRef(null);
+	const lastNameRef = useRef(null);
+	const idRef = useRef(null);
+
 	return (
 		<form className={`form${className ? ` ${className}` : ""}`}>
 			<FormGroup
 				labelText="First name"
 				onChangeFunc={dispatchSetStudentFirstName}
+				inputRef={firstNameRef}
 			></FormGroup>
 			<FormGroup
 				labelText="Last name"
 				onChangeFunc={dispatchSetStudentLastName}
+				inputRef={lastNameRef}
 			></FormGroup>
 			<FormGroup
 				labelText="Student number"
 				onChangeFunc={dispatchSetStudentId}
+				inputRef={idRef}
 			></FormGroup>
 			<button
 				type="submit"
-				class="btn btn-primary"
-				onClick={dispatchAddNewStudent}
+				className="btn btn-primary"
+				onClick={(event) => {
+					event.preventDefault();
+					dispatchAddNewStudent();
+					firstNameRef.current.value = "";
+					lastNameRef.current.value = "";
+					idRef.current.value = "";
+				}}
 			>
 				Submit
 			</button>
