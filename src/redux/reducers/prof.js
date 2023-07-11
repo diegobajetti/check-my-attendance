@@ -2,6 +2,7 @@ import {
 	SET_PROF_EMAIL,
 	SET_PROF_PASSWORD,
 	SET_LOGGED_IN_PROF,
+	SET_PROF_LOG_OUT,
 } from "../constants";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
 	courseCodes: [],
 	firstName: "",
 	lastName: "",
+	loggedIn: false,
 	profList: [
 		{
 			email: "prof1@uottawa.ca",
@@ -59,7 +61,11 @@ export default function (
 				(prof) => prof.email === email && prof.password === password
 			)[0];
 
-			return { ...state, ...profRecord };
+			return { ...state, ...profRecord, loggedIn: true };
+		case SET_PROF_LOG_OUT:
+			return {
+				...initialState,
+			};
 		default:
 			return state;
 	}

@@ -6,9 +6,12 @@ import {
 } from "react-router-dom/dist/index.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from "./components/pages/Home";
-import StudentSignIn from "./components/pages/StudentSignIn";
-import ProfSignIn from "./components/pages/ProfSignIn";
+import {
+	Home,
+	StudentSignIn,
+	ProfSignIn,
+	ProfPage,
+} from "./components/pages/index.js";
 
 function App() {
 	return (
@@ -26,6 +29,7 @@ function App() {
 					exact
 					element={<ProfSignIn />}
 				></Route>
+				<Route path="/prof-page" exact element={<ProfPage />}></Route>
 			</Switch>
 		</BrowserRouter>
 	);

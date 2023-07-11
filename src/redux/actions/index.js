@@ -1,3 +1,4 @@
-import * as student from "./student";
+import * as studentActions from "./student";
+import * as profActions from "./prof";
 
-export { student };
+export { studentActions, profActions };

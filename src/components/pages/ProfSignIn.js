@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
 	setProfEmail,
 	setProfPassword,
@@ -16,6 +17,8 @@ export function ProfSignIn({
 	dispatchSetProfPassword,
 	dispatchSetLoggedInProf,
 }) {
+	const navigate = useNavigate();
+
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
 
@@ -59,6 +62,7 @@ export function ProfSignIn({
 									dispatchSetLoggedInProf();
 									setLoggedIn(true);
 									setLogInFail(false);
+									navigate("/prof-page");
 								} else {
 									setLogInFail(true);
 									setLoggedIn(false);

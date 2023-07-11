@@ -65,5 +65,4 @@ const mapStateToProps = ({
 	};
 };
 
-const ConnectedStudentSignIn = connect(mapStateToProps)(StudentSignIn);
-export default ConnectedStudentSignIn;
+export default connect(mapStateToProps)(StudentSignIn);

@@ -2,6 +2,7 @@ import {
 	SET_PROF_EMAIL,
 	SET_PROF_PASSWORD,
 	SET_LOGGED_IN_PROF,
+	SET_PROF_LOG_OUT,
 } from "../constants";
 
 export function setProfEmail(email = "") {
@@ -30,3 +31,9 @@ export const setLoggedInProf = () => {
 		});
 	};
 };
+
+export function setProfLogOut() {
+	return {
+		type: SET_PROF_LOG_OUT,
+	};
+}
