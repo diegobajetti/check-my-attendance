@@ -1,10 +1,12 @@
 import {
 	SET_STUDENT_NEW,
 	SET_STUDENT_EXIST,
-	ADD_NEW_STUDENT,
 	SET_STUDENT_FN,
 	SET_STUDENT_LN,
 	SET_STUDENT_ID,
+	SET_STUDENT_COURSE_CODE,
+	SET_STUDENT_LOGGED_IN,
+	ADD_NEW_STUDENT,
 } from "../constants.js";
 
 function setStudentNew() {
@@ -40,17 +42,31 @@ function setStudentId(id = "") {
 	};
 }
 
+function setStudentCourseCode(courseCode = "") {
+	return {
+		type: SET_STUDENT_COURSE_CODE,
+		data: courseCode,
+	};
+}
+
+function setStudentLoginStatus(loggedIn = false) {
+	return {
+		type: SET_STUDENT_LOGGED_IN,
+		data: loggedIn,
+	};
+}
+
 const addNewStudent = () => {
 	return (dispatch, getState) => {
 		const {
 			student: {
-				currStudent: { firstName, lastName, id },
+				currStudent: { firstName, lastName, id, courseCode },
 			},
 		} = getState();
 
 		dispatch({
 			type: ADD_NEW_STUDENT,
-			data: { firstName, lastName, id },
+			data: { firstName, lastName, id, courseCode },
 		});
 	};
 };
@@ -61,5 +77,7 @@ export {
 	setStudentFirstName,
 	setStudentLastName,
 	setStudentId,
+	setStudentCourseCode,
+	setStudentLoginStatus,
 	addNewStudent,
 };

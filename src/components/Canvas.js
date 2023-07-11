@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
+import Panel from "./Panel.js";
 import "./Canvas.css";
 
-const Canvas = (props) => {
+const Canvas = () => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
@@ -12,7 +13,15 @@ const Canvas = (props) => {
 		context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 	}, []);
 
-	return <canvas className="camera-canvas" ref={canvasRef} {...props} />;
+	return (
+		<Panel className="canvas-panel">
+			<canvas
+				className="camera-canvas"
+				id="camera-canvas"
+				ref={canvasRef}
+			/>
+		</Panel>
+	);
 };
 
 export default Canvas;

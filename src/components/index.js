@@ -3,9 +3,10 @@ import Canvas from "./Canvas.js";
 import CardItem from "./CardItem.js";
 import Cards from "./Cards.js";
 import FormGroup from "./FormGroup.js";
-import NewStudentForm from "./NewStudentForm.js";
 import HeroSection from "./HeroSection.js";
 import Navbar from "./Navbar.js";
+import NewStudentForm from "./NewStudentForm.js";
+import Panel from "./Panel.js";
 
 export {
 	Button,
@@ -13,7 +14,8 @@ export {
 	CardItem,
 	Cards,
 	FormGroup,
-	NewStudentForm,
 	HeroSection,
 	Navbar,
+	NewStudentForm,
+	Panel,
 };

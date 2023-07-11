@@ -1,5 +1,15 @@
+.canvas-panel {
+	height: 70vh;
+	width: 75vw;
+	margin-top: 40px;
+	margin-bottom: 64px;
+}
+
 .camera-canvas {
 	margin: 40px;
-	height: 80vh;
-	width: 75vw;
+	height: 100%;
+	border-radius: 10px;
+}
+
+@media screen and (max-width: 960px) {
 }

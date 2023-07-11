@@ -1,10 +1,12 @@
 import {
 	SET_STUDENT_NEW,
 	SET_STUDENT_EXIST,
-	ADD_NEW_STUDENT,
 	SET_STUDENT_FN,
 	SET_STUDENT_LN,
 	SET_STUDENT_ID,
+	SET_STUDENT_COURSE_CODE,
+	SET_STUDENT_LOGGED_IN,
+	ADD_NEW_STUDENT,
 } from "../constants";
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
 		firstName: "",
 		lastName: "",
 		id: "",
+		courseCode: "",
+		loggedIn: false,
 	},
 	studentList: [],
 };
@@ -29,21 +33,6 @@ const studentReducer = (
 			return { ...state, currStudent: { ...currStudent, isNew: true } };
 		case SET_STUDENT_EXIST:
 			return { ...state, currStudent: { ...currStudent, isNew: false } };
-		case ADD_NEW_STUDENT:
-			const { firstName = "", lastName = "", id = "" } = action.data;
-			return {
-				...state,
-				// currStudent: {
-				// 	firstName: "",
-				// 	lastName: "",
-				// 	id: "",
-				// 	isNew: true,
-				// },
-				studentList: [
-					...studentList,
-					{ firstName, lastName, id, isNew: false },
-				],
-			};
 		case SET_STUDENT_FN:
 			return {
 				...state,
@@ -58,6 +47,30 @@ const studentReducer = (
 			return {
 				...state,
 				currStudent: { ...currStudent, id: data },
+			};
+		case SET_STUDENT_COURSE_CODE:
+			return {
+				...state,
+				currStudent: { ...currStudent, courseCode: data },
+			};
+		case SET_STUDENT_LOGGED_IN:
+			return {
+				...state,
+				currStudent: { ...currStudent, loggedIn: data },
+			};
+		case ADD_NEW_STUDENT:
+			const {
+				firstName = "",
+				lastName = "",
+				id = "",
+				courseCode = "",
+			} = action.data;
+			return {
+				...state,
+				studentList: [
+					...studentList,
+					{ firstName, lastName, id, courseCode, loggedIn: false },
+				],
 			};
 		default:
 			return state;
