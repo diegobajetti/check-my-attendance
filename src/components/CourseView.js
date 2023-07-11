@@ -13,7 +13,6 @@ const CourseView = ({
 	searchTerm,
 	searchResults,
 	selectedStudent,
-	dispatchSetSearchTerm,
 	dispatchSearchStudents,
 	dispatchSetSelectedStudent,
 }) => {
@@ -63,20 +62,17 @@ const CourseView = ({
 };
 
 const mapStateToProps = ({
-	prof: { searchTerm, searchResults, selectedStudent, selectedCourse },
+	prof: { searchTerm, searchResults, selectedStudent },
 }) => {
 	return {
 		searchTerm,
 		searchResults,
 		selectedStudent,
-		selectedCourse,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		dispatchSetSearchTerm: (searchTerm) =>
-			dispatch(setSearchTerm(searchTerm)),
 		dispatchSearchStudents: (searchTerm) =>
 			dispatch(searchStudents(searchTerm)),
 		dispatchSetSelectedStudent: (studentId) =>
