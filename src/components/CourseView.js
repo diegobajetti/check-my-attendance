@@ -51,7 +51,7 @@ const CourseView = ({
 					return (
 						<li
 							key={id}
-							className="search-result"
+							className="search-result bg-light"
 							onClick={() => dispatchSetSelectedStudent(id)}
 						>{`${firstName} ${lastName}`}</li>
 					);

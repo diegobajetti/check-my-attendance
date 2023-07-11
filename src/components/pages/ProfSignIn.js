@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/prof.js";
 import { Panel, FormGroup } from "../index";
 import "../../App.css";
+import "./ProfSignIn.css";
 
 export function ProfSignIn({
 	email,
