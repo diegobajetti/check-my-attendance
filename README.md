@@ -24,7 +24,17 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
 
    > It is assumed that `npm` is already installed. If not, refer to the [official documentation][npm-doc].
 
-### 3. Deploy the React app
+### 3. Preview the React app
+
+1. Start a local server with the following command.
+
+   ```bash
+   npm start
+   ```
+
+   Executing the command above will open a live server which features hot reloading at the following address: `localhost:3000`.
+
+### 4. Deploy the React app
 
 1. Commit and push any untracked files to the GitHub repository.
 
