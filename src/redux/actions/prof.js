@@ -6,6 +6,7 @@ import {
 	SET_SELECTED_COURSE,
 	SET_SEARCH_TERM,
 	SET_SEARCH_RESULTS,
+	SET_SELECTED_STUDENT,
 } from "../constants";
 
 export function setProfEmail(email = "") {
@@ -25,12 +26,16 @@ export function setProfPassword(password = "") {
 export const setLoggedInProf = () => {
 	return (dispatch, getState) => {
 		const {
-			prof: { email, password },
+			prof: { email, password, profList },
 		} = getState();
+
+		const profRecord = profList.filter(
+			(prof) => prof.email === email && prof.password === password
+		)[0];
 
 		dispatch({
 			type: SET_LOGGED_IN_PROF,
-			data: { email, password },
+			data: profRecord,
 		});
 	};
 };
@@ -41,12 +46,17 @@ export function setProfLogOut() {
 	};
 }
 
-export function setSelectedCourse(courseCode = "") {
-	return {
-		type: SET_SELECTED_COURSE,
-		data: courseCode,
+export const setSelectedCourse = (courseCode = "") => {
+	return (dispatch, getState) => {
+		dispatch({ type: SET_SELECTED_COURSE, data: courseCode });
+
+		if (courseCode === "") {
+			dispatch(setSearchTerm(""));
+			dispatch(setSearchResults([]));
+			dispatch(setSelectedStudent(null));
+		}
 	};
-}
+};
 
 export function setSearchTerm(searchTerm = "") {
 	return {
@@ -61,6 +71,25 @@ export function setSearchResults(searchResults = []) {
 		data: searchResults,
 	};
 }
+
+export const setSelectedStudent = (studentId = "") => {
+	return (dispatch, getState) => {
+		const {
+			prof: { searchResults },
+		} = getState();
+
+		let selectedStudent = searchResults.filter(
+			(student) => student.id === studentId
+		);
+		selectedStudent =
+			selectedStudent.length > 0 ? selectedStudent[0] : null;
+
+		dispatch({
+			type: SET_SELECTED_STUDENT,
+			data: selectedStudent,
+		});
+	};
+};
 
 export const searchStudents = (searchTerm = "") => {
 	return (dispatch, getState) => {
@@ -84,6 +113,10 @@ export const searchStudents = (searchTerm = "") => {
 			);
 		});
 
+		dispatch(setSearchTerm(searchTerm));
 		dispatch(setSearchResults(searchResults));
+		if (searchResults.length == 0) {
+			dispatch(setSelectedStudent(null));
+		}
 	};
 };

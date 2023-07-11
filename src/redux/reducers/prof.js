@@ -6,6 +6,7 @@ import {
 	SET_SELECTED_COURSE,
 	SET_SEARCH_TERM,
 	SET_SEARCH_RESULTS,
+	SET_SELECTED_STUDENT,
 } from "../constants";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 	selectedCourse: "",
 	searchTerm: "",
 	searchResults: [],
+	selectedStudent: null,
 	profList: [
 		{
 			email: "prof1@uottawa.ca",
@@ -47,7 +49,7 @@ export default function (
 	state = initialState,
 	action = { type: "", data: "" }
 ) {
-	const { profList } = state;
+	const { profList, searchResults } = state;
 	const { type, data } = action;
 
 	switch (type) {
@@ -62,12 +64,7 @@ export default function (
 				password: data,
 			};
 		case SET_LOGGED_IN_PROF:
-			const { email, password } = data;
-			const profRecord = profList.filter(
-				(prof) => prof.email === email && prof.password === password
-			)[0];
-
-			return { ...state, ...profRecord, loggedIn: true };
+			return { ...state, ...data, loggedIn: true };
 		case SET_PROF_LOG_OUT:
 			return {
 				...initialState,
@@ -86,6 +83,11 @@ export default function (
 			return {
 				...state,
 				searchResults: data,
+			};
+		case SET_SELECTED_STUDENT:
+			return {
+				...state,
+				selectedStudent: data,
 			};
 		default:
 			return state;

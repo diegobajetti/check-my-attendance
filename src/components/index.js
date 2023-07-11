@@ -1,3 +1,4 @@
+import AttendanceRecord from "./AttendanceRecord.js";
 import Button from "./Button.js";
 import Canvas from "./Canvas.js";
 import CardItem from "./CardItem.js";
@@ -11,6 +12,7 @@ import NewStudentForm from "./NewStudentForm.js";
 import Panel from "./Panel.js";
 
 export {
+	AttendanceRecord,
 	Button,
 	Canvas,
 	CardItem,

@@ -8,3 +8,10 @@
 #student-search-btn {
 	height: 38px;
 }
+
+.search-result {
+	list-style: none;
+	cursor: pointer;
+	height: 30px;
+	border: 10px black;
+}
