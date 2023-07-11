@@ -65,12 +65,37 @@ const studentReducer = (
 				id = "",
 				courseCode = "",
 			} = action.data;
+
+			let studentRecord = studentList.filter(
+				(student) => student.id === id
+			);
+
+			// if student is already registered, add the course code to their course code array
+			studentRecord =
+				studentRecord.length > 0
+					? {
+							...studentRecord[0],
+							courseCodes: [
+								...studentRecord[0].courseCodes,
+								courseCode,
+							],
+					  }
+					: {
+							firstName,
+							lastName,
+							id,
+							courseCodes: [courseCode],
+							loggedIn: false,
+					  };
+			const numCourseCodes = studentRecord.courseCodes.length;
 			return {
 				...state,
-				studentList: [
-					...studentList,
-					{ firstName, lastName, id, courseCode, loggedIn: false },
-				],
+				studentList: [...studentList, studentRecord].filter(
+					(student) =>
+						student.id !== id ||
+						(student.id === id &&
+							student.courseCodes.length === numCourseCodes)
+				),
 			};
 		default:
 			return state;
