@@ -71,7 +71,7 @@
 }
 
 .nav-links-mobile {
-	display: none;
+	display: none !important;
 }
 
 .menu-icon {
@@ -103,7 +103,7 @@
 		transition: all 0.5s ease;
 	}
 
-	.nav-menu.active {
+	.nav-nav-menu.active {
 		background: #242222;
 		left: 0;
 		opacity: 1;

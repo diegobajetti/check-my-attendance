@@ -22,14 +22,13 @@
 	margin-left: 10px;
 }
 
-#log-out-btn {
-	margin-top: 0px !important;
-}
-
 .course-card-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	width: 100%;
+}
+
+@media screen and (max-width: 840px) {
 }

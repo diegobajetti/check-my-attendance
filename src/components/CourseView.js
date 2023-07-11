@@ -2,11 +2,7 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import AttendanceRecord from "./AttendanceRecord";
 import InputGroup from "./InputGroup";
-import {
-	setSearchTerm,
-	searchStudents,
-	setSelectedStudent,
-} from "../redux/actions/prof";
+import { searchStudents, setSelectedStudent } from "../redux/actions/prof";
 import "./CourseView.css";
 
 const CourseView = ({

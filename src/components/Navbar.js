@@ -5,11 +5,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom/dist/index.js";
 import Button from "./Button";
 import "./Navbar.css";
+import SignOutBtn from "./SignOutBtn";
 
-function Navbar() {
+function Navbar({ profLoggedIn = false }) {
 	const [click, setClick] = useState(false);
 	const [button, setButton] = useState(true);
 
@@ -60,23 +62,36 @@ function Navbar() {
 						</Link>
 					</li>
 					<li className="nav-item button">
-						<Link
-							to="/prof-sign-in"
-							className="nav-links-mobile"
-							onClick={closeMobileMenu}
-						>
-							Professor Sign In
-						</Link>
+						{profLoggedIn ? (
+							<SignOutBtn className="btn--outline nav-links-mobile" />
+						) : (
+							<Link
+								to="/prof-sign-in"
+								className="nav-links-mobile"
+								onClick={closeMobileMenu}
+							>
+								Professor Sign In
+							</Link>
+						)}
 					</li>
 				</ul>
-				{button && (
-					<Button buttonStyle="btn--outline">
-						Professor Sign In
-					</Button>
-				)}
+				{button &&
+					(profLoggedIn ? (
+						<SignOutBtn className="btn--outline" />
+					) : (
+						<Button buttonStyle="btn--outline">
+							Professor Sign In
+						</Button>
+					))}
 			</div>
 		</nav>
 	);
 }
 
-export default Navbar;
+const mapStateToProps = ({ prof: { loggedIn } }) => {
+	return {
+		profLoggedIn: loggedIn,
+	};
+};
+
+export default connect(mapStateToProps)(Navbar);

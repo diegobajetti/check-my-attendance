@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setProfLogOut, setSelectedCourse } from "../../redux/actions/prof";
 import { CourseCard, CourseView } from "../index";
 import "./ProfPage.css";
@@ -10,11 +9,8 @@ const ProfPage = ({
 	lastName,
 	courseCodes,
 	selectedCourse,
-	dispatchSetProfLogOut,
 	dispatchSetSelectedCourse,
 }) => {
-	const navigate = useNavigate();
-
 	return (
 		<div className="page-container">
 			<div className="header-container">
@@ -41,17 +37,6 @@ const ProfPage = ({
 						</button>
 					)}
 				</div>
-
-				<button
-					className="btn btn-primary"
-					id="log-out-btn"
-					onClick={() => {
-						dispatchSetProfLogOut();
-						navigate("/prof-sign-in");
-					}}
-				>
-					Sign Out
-				</button>
 			</div>
 
 			{selectedCourse ? (
@@ -71,6 +56,7 @@ const ProfPage = ({
 									onClick={() =>
 										dispatchSetSelectedCourse(courseCode)
 									}
+									key={courseCode}
 								></CourseCard>
 							);
 						})}

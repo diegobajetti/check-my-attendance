@@ -10,6 +10,7 @@ import HeroSection from "./HeroSection.js";
 import Navbar from "./Navbar.js";
 import NewStudentForm from "./NewStudentForm.js";
 import Panel from "./Panel.js";
+import SignOutBtn from "./SignOutBtn.js";
 
 export {
 	AttendanceRecord,
@@ -24,4 +25,5 @@ export {
 	Navbar,
 	NewStudentForm,
 	Panel,
+	SignOutBtn,
 };

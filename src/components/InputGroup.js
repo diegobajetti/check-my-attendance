@@ -23,7 +23,7 @@ const InputGroup = ({
 					placeholder={placeholder}
 					onChange={(event) => onChange(event.target.value)}
 				></input>
-				<div class="input-group-append">
+				<div className="input-group-append">
 					<button
 						className={`btn ${btnClass}`}
 						id="input-group-addon-btn"
