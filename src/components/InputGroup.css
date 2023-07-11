@@ -1,0 +1,9 @@
+#input-group-label {
+	margin-bottom: 8px !important;
+}
+
+#input-group-addon-btn {
+	margin-top: 0px !important;
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}

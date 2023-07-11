@@ -18,7 +18,38 @@ const initialState = {
 		courseCode: "",
 		loggedIn: false,
 	},
-	studentList: [],
+	studentList: [
+		{
+			firstName: "Christina",
+			lastName: "Song",
+			id: "300168292",
+			courseCodes: ["CSI3140", "CSI3131"],
+		},
+		{
+			firstName: "Khaled",
+			lastName: "Elbasiouni",
+			id: "300123456",
+			courseCodes: ["CSI3131", "CSI3104", "CEG3185"],
+		},
+		{
+			firstName: "Diego",
+			lastName: "Bajetti",
+			id: "300999000",
+			courseCodes: ["CSI3140", "CEG3185"],
+		},
+		{
+			firstName: "Yassine",
+			lastName: "Sami",
+			id: "300333444",
+			courseCodes: ["CSI3131", "CSI3104", "CSI3140"],
+		},
+		{
+			firstName: "Toad",
+			lastName: "Mushroom",
+			id: "300111222",
+			courseCodes: ["CSI3131", "CSI3104", "CSI3140", "CEG3185"],
+		},
+	],
 };
 
 const studentReducer = (
@@ -26,9 +57,9 @@ const studentReducer = (
 	action = { type: "", data: {} }
 ) => {
 	const { currStudent, studentList } = state;
-	const { data } = action;
+	const { type, data } = action;
 
-	switch (action.type) {
+	switch (type) {
 		case SET_STUDENT_NEW:
 			return { ...state, currStudent: { ...currStudent, isNew: true } };
 		case SET_STUDENT_EXIST:

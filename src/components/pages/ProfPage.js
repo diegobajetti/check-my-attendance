@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setProfLogOut, setSelectedCourse } from "../../redux/actions/prof";
-import { CourseCard, FormGroup, Panel } from "../index";
+import { CourseCard, CourseView } from "../index";
 import "./ProfPage.css";
 
 const ProfPage = ({
@@ -55,11 +55,7 @@ const ProfPage = ({
 			</div>
 
 			{selectedCourse ? (
-				<>
-					<form>
-						<FormGroup labelText="Search for a student's attendance records"></FormGroup>
-					</form>
-				</>
+				<CourseView />
 			) : (
 				<>
 					<h4>Select a course to view:</h4>
@@ -67,7 +63,7 @@ const ProfPage = ({
 						{/* default courses for testing purposes */}
 						{(courseCodes.length > 0
 							? courseCodes
-							: ["CSI1234", "SEG5678", "CEG0091"]
+							: ["CSI3104", "CSI3140", "CSI3131", "CEG3185"]
 						).map((courseCode) => {
 							return (
 								<CourseCard

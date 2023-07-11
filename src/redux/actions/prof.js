@@ -4,6 +4,8 @@ import {
 	SET_LOGGED_IN_PROF,
 	SET_PROF_LOG_OUT,
 	SET_SELECTED_COURSE,
+	SET_SEARCH_TERM,
+	SET_SEARCH_RESULTS,
 } from "../constants";
 
 export function setProfEmail(email = "") {
@@ -45,3 +47,43 @@ export function setSelectedCourse(courseCode = "") {
 		data: courseCode,
 	};
 }
+
+export function setSearchTerm(searchTerm = "") {
+	return {
+		type: SET_SEARCH_TERM,
+		data: searchTerm,
+	};
+}
+
+export function setSearchResults(searchResults = []) {
+	return {
+		type: SET_SEARCH_RESULTS,
+		data: searchResults,
+	};
+}
+
+export const searchStudents = (searchTerm = "") => {
+	return (dispatch, getState) => {
+		const {
+			student: { studentList = [] },
+			prof: { selectedCourse = "" },
+		} = getState();
+
+		const searchResults = studentList.filter((student) => {
+			const {
+				firstName = "",
+				lastName = "",
+				id = "",
+				courseCodes = [],
+			} = student;
+			return (
+				(firstName.indexOf(searchTerm) !== -1 ||
+					lastName.indexOf(searchTerm) !== -1 ||
+					id.indexOf(searchTerm) !== -1) &&
+				courseCodes.includes(selectedCourse)
+			);
+		});
+
+		dispatch(setSearchResults(searchResults));
+	};
+};
