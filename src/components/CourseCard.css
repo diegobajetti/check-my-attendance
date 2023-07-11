@@ -1,0 +1,12 @@
+.course-card {
+	width: 300px;
+	cursor: pointer !important;
+	/* background-color: rgb(33, 37, 41); */
+	/* color: white; */
+	transition: 0.2s all ease-in-out;
+	margin-top: 15px;
+}
+
+.course-card:hover {
+	transform: scale(1.1);
+}

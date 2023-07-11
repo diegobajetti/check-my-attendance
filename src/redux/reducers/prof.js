@@ -3,6 +3,7 @@ import {
 	SET_PROF_PASSWORD,
 	SET_LOGGED_IN_PROF,
 	SET_PROF_LOG_OUT,
+	SET_SELECTED_COURSE,
 } from "../constants";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
 	firstName: "",
 	lastName: "",
 	loggedIn: false,
+	selectedCourse: "",
 	profList: [
 		{
 			email: "prof1@uottawa.ca",
@@ -65,6 +67,11 @@ export default function (
 		case SET_PROF_LOG_OUT:
 			return {
 				...initialState,
+			};
+		case SET_SELECTED_COURSE:
+			return {
+				...state,
+				selectedCourse: data,
 			};
 		default:
 			return state;
