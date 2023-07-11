@@ -30,18 +30,16 @@ function HeroSection() {
 			<p>with open('check-my-attendance.txt', 'r') as file:</p>
 			<div className="hero-btns">
 				<Button
-					className="btn-in-hero"
+					className="btns-in-hero"
 					buttonStyle="btn--outline"
 					buttonSize={isMobile ? "btn--medium" : "btn--large"}
-					isLink
 				>
 					if clicked_button == 'GET STARTED':
 				</Button>
 				<Button
-					className="btn-in-hero"
+					className="btns-in-hero"
 					buttonStyle="btn--primary"
 					buttonSize={isMobile ? "btn--medium" : "btn--large"}
-					isLink
 				>
 					learn_more = file.readlines()
 					<FontAwesomeIcon

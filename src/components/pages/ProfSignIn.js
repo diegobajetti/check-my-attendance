@@ -8,7 +8,6 @@ import {
 } from "../../redux/actions/prof.js";
 import { Panel, FormGroup } from "../index";
 import "../../App.css";
-import "./ProfSignIn.css";
 
 export function ProfSignIn({
 	email,
@@ -23,7 +22,6 @@ export function ProfSignIn({
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
 
-	const [loggedIn, setLoggedIn] = useState(false);
 	const [logInFail, setLogInFail] = useState(false);
 
 	return (
@@ -61,12 +59,10 @@ export function ProfSignIn({
 									).length > 0
 								) {
 									dispatchSetLoggedInProf();
-									setLoggedIn(true);
 									setLogInFail(false);
 									navigate("/prof-page");
 								} else {
 									setLogInFail(true);
-									setLoggedIn(false);
 									emailRef.current.value = "";
 									passwordRef.current.value = "";
 								}

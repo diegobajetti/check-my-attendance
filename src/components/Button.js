@@ -13,7 +13,6 @@ const Button = ({
 	onClick,
 	buttonStyle,
 	buttonSize,
-	isLink = false,
 }) => {
 	const checkButtonStyle = STYLES.includes(buttonStyle)
 		? buttonStyle
@@ -21,24 +20,18 @@ const Button = ({
 
 	const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
-	const buttonElem = (
-		<button
-			className={`${checkButtonStyle} ${checkButtonSize}${
-				className ? ` ${className}` : ""
-			}`}
-			onClick={onClick}
-			type={type}
-		>
-			{children}
-		</button>
-	);
-
-	return isLink ? (
+	return (
 		<Link to="/prof-sign-in" className="btn-mobile">
-			{buttonElem}
+			<button
+				className={`${checkButtonStyle} ${checkButtonSize}${
+					className ? ` ${className}` : ""
+				}`}
+				onClick={onClick}
+				type={type}
+			>
+				{children}
+			</button>
 		</Link>
-	) : (
-		{ buttonElem }
 	);
 };
 

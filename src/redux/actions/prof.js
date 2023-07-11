@@ -115,7 +115,7 @@ export const searchStudents = (searchTerm = "") => {
 
 		dispatch(setSearchTerm(searchTerm));
 		dispatch(setSearchResults(searchResults));
-		if (searchResults.length == 0) {
+		if (searchResults.length === 0) {
 			dispatch(setSelectedStudent(null));
 		}
 	};

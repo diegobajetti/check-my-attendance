@@ -49,7 +49,6 @@ export default function (
 	state = initialState,
 	action = { type: "", data: "" }
 ) {
-	const { profList, searchResults } = state;
 	const { type, data } = action;
 
 	switch (type) {
