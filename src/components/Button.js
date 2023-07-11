@@ -23,7 +23,7 @@ const Button = ({
 	return (
 		<Link to="/prof-sign-in" className="btn-mobile">
 			<button
-				className={`${checkButtonStyle} ${checkButtonSize}${
+				className={`btn ${checkButtonStyle} ${checkButtonSize}${
 					className ? ` ${className}` : ""
 				}`}
 				onClick={onClick}

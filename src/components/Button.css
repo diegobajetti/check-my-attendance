@@ -18,11 +18,11 @@
 }
 
 .btn--outline {
-	background-color: transparent;
-	color: #fff;
-	padding: 8px 20px;
-	border: 1px solid var(--primary);
-	transition: all 0.3s ease-out;
+	background-color: transparent !important;
+	color: #fff !important;
+	padding: 8px 20px !important;
+	border: 1px solid var(--primary) !important;
+	transition: all 0.3s ease-out !important;
 }
 
 .btn--medium {
@@ -37,8 +37,8 @@
 
 .btn--large:hover,
 .btn--medium:hover {
-	transition: all 0.3s ease-out;
-	background: #fff;
-	color: #242424;
-	transition: 250ms;
+	transition: all 0.3s ease-out !important;
+	background: #fff !important;
+	color: #242424 !important;
+	transition: 250ms !important;
 }

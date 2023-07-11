@@ -70,7 +70,7 @@ function Navbar() {
 					</li>
 				</ul>
 				{button && (
-					<Button buttonStyle={"btn--outline"}>
+					<Button buttonStyle="btn--outline">
 						Professor Sign In
 					</Button>
 				)}
