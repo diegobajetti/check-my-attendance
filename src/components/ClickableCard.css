@@ -1,10 +1,10 @@
-.course-card {
+.clickable-card {
 	width: 300px;
 	cursor: pointer !important;
 	transition: 0.3s all ease-in-out;
 	margin-top: 15px;
 }
 
-.course-card:hover {
+.clickable-card:hover {
 	transform: scale(1.1);
 }

@@ -21,7 +21,7 @@ const Button = ({
 	const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
 	return (
-		<Link to="/prof-sign-in" className="btn-mobile">
+		<Link to="/sign-in" className="btn-mobile">
 			<button
 				className={`btn ${checkButtonStyle} ${checkButtonSize}${
 					className ? ` ${className}` : ""

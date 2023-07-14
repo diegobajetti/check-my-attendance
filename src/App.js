@@ -8,6 +8,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import {
 	Home,
+	SignIn,
 	StudentSignIn,
 	ProfSignIn,
 	ProfPage,
@@ -19,6 +20,7 @@ function App() {
 			<Navbar />
 			<Switch>
 				<Route path="/" exact element={<Home />}></Route>
+				<Route path="/sign-in" exact element={<SignIn />}></Route>
 				<Route
 					path="/student"
 					exact

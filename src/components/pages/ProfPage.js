@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setProfLogOut, setSelectedCourse } from "../../redux/actions/prof";
-import { CourseCard, CourseView } from "../index";
+import { ClickableCard, CourseView } from "../index";
 import "./ProfPage.css";
 
 const ProfPage = ({
@@ -51,13 +51,15 @@ const ProfPage = ({
 							: ["CSI3104", "CSI3140", "CSI3131", "CEG3185"]
 						).map((courseCode) => {
 							return (
-								<CourseCard
-									courseCode={courseCode}
+								<ClickableCard
+									className="course-card"
 									onClick={() =>
 										dispatchSetSelectedCourse(courseCode)
 									}
 									key={courseCode}
-								></CourseCard>
+								>
+									<h3>{courseCode}</h3>
+								</ClickableCard>
 							);
 						})}
 					</div>

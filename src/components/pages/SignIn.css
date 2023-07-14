@@ -1,0 +1,11 @@
+.sign-in-container {
+	display: flex;
+	flex-direction: column;
+	padding: 64px;
+	align-items: center;
+	justify-content: center;
+}
+
+.sign-in-container > .clickable-card:not(:last-child) {
+	margin-bottom: 40px;
+}

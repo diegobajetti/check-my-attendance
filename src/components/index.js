@@ -3,7 +3,7 @@ import Button from "./Button.js";
 import Canvas from "./Canvas.js";
 import CardItem from "./CardItem.js";
 import Cards from "./Cards.js";
-import CourseCard from "./CourseCard.js";
+import ClickableCard from "./ClickableCard.js";
 import CourseView from "./CourseView.js";
 import FormGroup from "./FormGroup.js";
 import HeroSection from "./HeroSection.js";
@@ -18,7 +18,7 @@ export {
 	Canvas,
 	CardItem,
 	Cards,
-	CourseCard,
+	ClickableCard,
 	CourseView,
 	FormGroup,
 	HeroSection,

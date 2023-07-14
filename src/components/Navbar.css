@@ -147,23 +147,23 @@
 	}
 
 	.nav-links-mobile {
-		display: block;
-		text-align: center;
-		margin: 2rem auto;
-		border-radius: 4px;
-		width: 80%;
-		text-decoration: none;
-		font-size: 1.5rem;
-		background-color: transparent;
-		color: #fff;
-		padding: 14px 20px;
-		border: 1px solid #fff;
-		transition: all 0.3s ease-out;
+		display: block !important;
+		text-align: center !important;
+		margin: 2rem auto !important;
+		border-radius: 4px !important;
+		width: 80% !important;
+		text-decoration: none !important;
+		font-size: 1.5rem !important;
+		background-color: transparent !important;
+		color: #fff !important;
+		padding: 14px 20px !important;
+		border: 1px solid #fff !important;
+		transition: all 0.3s ease-out !important;
 	}
 
 	.nav-links-mobile:hover {
-		background: #fff;
-		color: #242424;
-		transition: 250ms;
+		background: #fff !important;
+		color: #242424 !important;
+		transition: 250ms !important;
 	}
 }

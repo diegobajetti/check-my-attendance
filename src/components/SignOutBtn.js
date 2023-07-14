@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setProfLogOut } from "../redux/actions/prof";
-import "./Button.css";
 
 const SignOutBtn = ({ className = "btn-primary", dispatchSetProfLogOut }) => {
 	const navigate = useNavigate();

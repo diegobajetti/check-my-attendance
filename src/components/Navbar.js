@@ -52,25 +52,16 @@ function Navbar({ profLoggedIn = false }) {
 							Home
 						</Link>
 					</li>
-					<li className="nav-item">
-						<Link
-							to="/student"
-							className="nav-links"
-							onClick={closeMobileMenu}
-						>
-							Student Sign In
-						</Link>
-					</li>
 					<li className="nav-item button">
 						{profLoggedIn ? (
-							<SignOutBtn className="btn--outline nav-links-mobile" />
+							<SignOutBtn className="nav-links-mobile" />
 						) : (
 							<Link
-								to="/prof-sign-in"
+								to="/sign-in"
 								className="nav-links-mobile"
 								onClick={closeMobileMenu}
 							>
-								Professor Sign In
+								Sign In
 							</Link>
 						)}
 					</li>
@@ -79,9 +70,7 @@ function Navbar({ profLoggedIn = false }) {
 					(profLoggedIn ? (
 						<SignOutBtn className="btn--outline" />
 					) : (
-						<Button buttonStyle="btn--outline">
-							Professor Sign In
-						</Button>
+						<Button buttonStyle="btn--outline">SIGN IN</Button>
 					))}
 			</div>
 		</nav>
