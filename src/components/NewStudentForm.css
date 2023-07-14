@@ -5,6 +5,10 @@
 	margin-top: 20px;
 }
 
+.new-student-form-panel .btn {
+	margin-top: 10px !important;
+}
+
 .form {
 	display: flex;
 	flex-direction: column;
@@ -12,10 +16,6 @@
 
 .form > :not(:last-child) {
 	margin-bottom: 10px;
-}
-
-.btn {
-	margin-top: 10px;
 }
 
 @media screen and (max-width: 960px) {
