@@ -42,7 +42,7 @@ function Navbar({ profLoggedIn = false }) {
 						className={click ? "fas fa-times" : "fas fa-bars"}
 					/>
 				</div>
-				<ul className={click ? "nav-nav-menu active" : "nav-nav-menu"}>
+				<ul className={click ? "nav-menu active" : "nav-menu"}>
 					<li className="nav-item">
 						<Link
 							to="/"
