@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.content-container {
+	width: 100%;
+	padding: 64px;
+}
+
+.content-h1 {
+	margin-bottom: 15px;
+}
+
+.alert {
+	width: 100%;
+}
+
+.new-student-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media screen and (max-width: 960px) {
+	.content-container {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}

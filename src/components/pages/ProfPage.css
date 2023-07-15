@@ -1,0 +1,34 @@
+.page-container {
+	padding: 64px;
+}
+
+.header-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 64px;
+}
+
+.header-start-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#back-to-selection {
+	margin-top: 0px !important;
+	margin-left: 10px;
+}
+
+.course-card-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+@media screen and (max-width: 840px) {
+}

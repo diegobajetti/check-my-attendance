@@ -1,104 +1,104 @@
 video {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: -1;
 }
 
 .hero-container {
-  height: 100vh;
-  height: 100svh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-  object-fit: contain;
+	height: 100vh;
+	height: 100svh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+	object-fit: contain;
 }
 
 .hero-container > h1 {
-  color: #fff;
-  font-size: 100px;
-  margin-top: -26px;
+	color: #fff;
+	font-size: 100px;
+	margin-top: -26px;
 }
 
 .hero-container > p,
 .hero-container > span {
-  margin-top: 8px;
-  font-size: 32px;
-  color: #fff;
-  font-family: "JetBrains Mono", "Trebuchet MS", "Lucida Sans Unicode",
-    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	margin-top: 8px;
+	font-size: 32px;
+	color: #fff;
+	font-family: "JetBrains Mono", "Trebuchet MS", "Lucida Sans Unicode",
+		"Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .hero-btns {
-  margin-top: 16px;
+	margin-top: 16px;
 }
 
-.hero-btns .btn {
-  margin: 6px;
-  font-family: "JetBrains Mono", "Trebuchet MS", "Lucida Sans Unicode",
-    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+.hero-btns .btns-in-hero {
+	margin: 6px;
+	font-family: "JetBrains Mono", "Trebuchet MS", "Lucida Sans Unicode",
+		"Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .fa-play-circle {
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 @media screen and (max-width: 960px) {
-  .hero-container > h1 {
-    font-size: 70px;
-    margin-top: -150px;
-  }
+	.hero-container > h1 {
+		font-size: 70px;
+		margin-top: -150px;
+	}
 
-  .hero-container > p,
-  span,
-  Button {
-    font-size: 26px;
-  }
+	.hero-container > p,
+	span,
+	Button {
+		font-size: 26px;
+	}
 }
 
 @media screen and (max-width: 840px) {
-  .hero-container > h1 {
-    font-size: 50px;
-    margin-top: -100px;
-  }
+	.hero-container > h1 {
+		font-size: 50px;
+		margin-top: -100px;
+	}
 
-  .hero-container > p,
-  span {
-    font-size: 20px;
-  }
+	.hero-container > p,
+	span {
+		font-size: 20px;
+	}
 
-  .hero-btns {
-    margin-top: 14px;
-  }
+	.hero-btns {
+		margin-top: 14px;
+	}
 
-  .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
+	.btn-mobile {
+		display: block;
+		text-decoration: none;
+	}
 
-  .btn {
-    width: 100%;
-  }
+	.btn {
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 470px) {
-  .hero-container > p,
-  span {
-    font-size: 15px;
-  }
+	.hero-container > p,
+	span {
+		font-size: 15px;
+	}
 
-  .hero-btns {
-    margin-top: 12px;
-  }
+	.hero-btns {
+		margin-top: 12px;
+	}
 }
 
 @media screen and (max-width: 370px) {
-  .hero-container > p,
-  span {
-    font-size: 10px;
-  }
+	.hero-container > p,
+	span {
+		font-size: 10px;
+	}
 }
