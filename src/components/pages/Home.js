@@ -1,12 +1,11 @@
 import React from "react";
 import "../../App.css";
-import { Cards, HeroSection } from "../index";
+import { HeroSection } from "../index";
 
 function Home() {
 	return (
 		<div>
 			<HeroSection />
-			<Cards />
 		</div>
 	);
 }

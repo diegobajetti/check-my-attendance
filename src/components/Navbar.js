@@ -70,7 +70,9 @@ function Navbar({ profLoggedIn = false }) {
 					(profLoggedIn ? (
 						<SignOutBtn className="btn--outline" />
 					) : (
-						<Button buttonStyle="btn--outline">SIGN IN</Button>
+						<Button linkTo="/sign-in" buttonStyle="btn--outline">
+							SIGN IN
+						</Button>
 					))}
 			</div>
 		</nav>

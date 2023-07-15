@@ -1,5 +1,3 @@
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import "./HeroSection.css";
@@ -27,25 +25,15 @@ function HeroSection() {
 				playsInline="playsInline"
 			/>
 			<h1>Check My Attendance</h1>
-			<p>with open('check-my-attendance.txt', 'r') as file:</p>
+			<p>Using facial recognition to simplify attendance taking</p>
 			<div className="hero-btns">
 				<Button
+					linkTo="/student"
 					className="btns-in-hero"
 					buttonStyle="btn--outline"
 					buttonSize={isMobile ? "btn--medium" : "btn--large"}
 				>
-					if clicked_button == 'GET STARTED':
-				</Button>
-				<Button
-					className="btns-in-hero"
-					buttonStyle="btn--primary"
-					buttonSize={isMobile ? "btn--medium" : "btn--large"}
-				>
-					learn_more = file.readlines()
-					<FontAwesomeIcon
-						icon={faPlayCircle}
-						className="fa-play-circle"
-					></FontAwesomeIcon>
+					TAKE MY ATTENDANCE
 				</Button>
 			</div>
 		</div>
