@@ -10,31 +10,41 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
 
 1. Clone the repository by executing the following command.
 
-   ```bash
-   git clone https://github.com/diegobajetti/check-my-attendance.git
-   ```
+    ```bash
+    git clone https://github.com/diegobajetti/check-my-attendance.git
+    ```
 
 ### 2. Install the required dependencies
 
 1. Install the required dependencies by executing the following command.
 
+    ```bash
+    npm i
+    ```
+
+    > It is assumed that `npm` is already installed. If not, refer to the [official documentation][npm-doc].
+
+### 3. Preview the React app
+
+1. Start a local server with the following command.
+
    ```bash
-   npm i
+   npm start
    ```
 
-   > It is assumed that `npm` is already installed. If not, refer to the [official documentation][npm-doc].
+   Executing the command above will open a live server which features hot reloading at the following address: `localhost:3000`.
 
-### 3. Deploy the React app
+### 4. Deploy the React app
 
 1. Commit and push any untracked files to the GitHub repository.
 
 1. Build the app.
 
-   ```bash
-   npm run deploy
-   ```
+    ```bash
+    npm run deploy
+    ```
 
-   By executing the command above, the [`predeploy`][package-json-predeploy] and [`deploy`][package-json-deploy] scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the [`gh-pages`][gh-pages-branch] branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL][package-json-homepage] whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
+    By executing the command above, the [`predeploy`][package-json-predeploy] and [`deploy`][package-json-deploy] scripts will run and the React app will be deployed. Internally, the `predeploy` script creates a distributable version of the app and the `build` script pushes the compiled app to a commit in the [`gh-pages`][gh-pages-branch] branch. The [`gh-pages`][gh-pages] package will deploy the application to the specified [URL][package-json-homepage] whenever the `npm run deploy` command is executed. A [GitHub workflow][github-action] will link the GitHub page with the source files in the `gh-pages` branch, and once it is completed, the deployed app with the newest changes will be reflected [here][live-website].
 
 ## Common Issues
 
@@ -50,49 +60,49 @@ Since the website is deployed under the [`homepage`][package-json-homepage] URL,
 
 1. Diagnose the type of media.
 
-   1. _Background Image_
+    1. _Background Image_
 
-      1. Open the `.css` file that imports an image with the `background-image` property.
-      1. Change the format of the `url()` value.
+        1. Open the `.css` file that imports an image with the `background-image` property.
+        1. Change the format of the `url()` value.
 
-         ```css
-         * {
-           background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
-         }
-         ```
+            ```css
+            * {
+            	background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
+            }
+            ```
 
-         > The `url()` value should follow this format: `https://{github_username}.github.io/{repo_name}/{file_path}`
+            > The `url()` value should follow this format: `https://{github_username}.github.io/{repo_name}/{file_path}`
 
-   1. _Image/Video Tag_
+    1. _Image/Video Tag_
 
-      1. Open the `.html` file that utilizes the `<img/>` or `<video/>` tag.
-      1. Change the format of the `src` attribute.
+        1. Open the `.html` file that utilizes the `<img/>` or `<video/>` tag.
+        1. Change the format of the `src` attribute.
 
-         ```html
-         <img src={process.env.PUBLIC_URL + "/images/img-1.jpg"} />
-         ```
+            ```html
+            <img src={process.env.PUBLIC_URL + "/images/img-1.jpg"} />
+            ```
 
-         > The `src` attribute's value should follow this format: `process.env.PUBLIC_URL + "/{file_path}"`
+            > The `src` attribute's value should follow this format: `process.env.PUBLIC_URL + "/{file_path}"`
 
-   Alternatively, run the following two commands to match the two cases above:
+    Alternatively, run the following two commands to match the two cases above:
 
-   ```sh
-   cd $(git rev-parse --show-cdup)/src
-   ```
+    ```sh
+    cd $(git rev-parse --show-cdup)/src
+    ```
 
-   ```sh
-   grep -RIlxP --include=\*.{html,css,js} '^.*\b(?:src=|background\-image:).*$'
-   ```
+    ```sh
+    grep -RIlxP --include=\*.{html,css,js} '^.*\b(?:src=|background\-image:).*$'
+    ```
 
-   `grep` is a utility for searching strings through multiple text files. Here, it is invoked with the following parameters:
+    `grep` is a utility for searching strings through multiple text files. Here, it is invoked with the following parameters:
 
-   - `R` — reads all files under each directory, recursively, across all symbolic links
-   - `I` — ignore binary files; process a binary file as if it did not contain matching data
-   - `l` — print the name of each file for which a match was found
-   - `x` — select only those matches that exactly match the whole line
-   - `P` — interpret patterns as Perl-compatible regular expressions (PCREs)
-   - `--include=` — search only files whose base name matches the pattern
-   - Regex — find an explanation for the regular expression [here][regex-example]
+    - `R` — reads all files under each directory, recursively, across all symbolic links
+    - `I` — ignore binary files; process a binary file as if it did not contain matching data
+    - `l` — print the name of each file for which a match was found
+    - `x` — select only those matches that exactly match the whole line
+    - `P` — interpret patterns as Perl-compatible regular expressions (PCREs)
+    - `--include=` — search only files whose base name matches the pattern
+    - Regex — find an explanation for the regular expression [here][regex-example]
 
 1. Push these changes to the remote repository and [deploy](#3-deploy-the-react-app) the application. The global `process.env.PUBLIC_URL` variable allows for the images to be displayed when running locally _and_ when being deployed to the remote.
 
@@ -104,19 +114,19 @@ Upon opening the deployed GitHub Pages site, the page might be blank until refre
 
 1. Add the following property.
 
-   ```html
-   basename={process.env.PUBLIC_URL}
-   ```
+    ```html
+    basename={process.env.PUBLIC_URL}
+    ```
 
-   Alternatively, run the following two commands to identify and replace the property:
+    Alternatively, run the following two commands to identify and replace the property:
 
-   ```sh
-   cd $(git rev-parse --show-cdup)/src
-   ```
+    ```sh
+    cd $(git rev-parse --show-cdup)/src
+    ```
 
-   ```sh
-   grep -RIl --include=\*.js '<BrowserRouter' | xargs sed -i 's/<BrowserRouter/<BrowserRouter basename={process.env.PUBLIC_URL}/g'
-   ```
+    ```sh
+    grep -RIl --include=\*.js '<BrowserRouter' | xargs sed -i 's/<BrowserRouter/<BrowserRouter basename={process.env.PUBLIC_URL}/g'
+    ```
 
 Specifying the `basename={process.env.PUBLIC_URL}` in the routing root allows the router to extract the base URL of the project and properly display the site.
 

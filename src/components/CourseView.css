@@ -1,0 +1,22 @@
+.search-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 400px;
+}
+
+#student-search-btn {
+	height: 38px;
+}
+
+.search-results-container {
+	padding-left: 0px !important;
+}
+
+.search-result {
+	list-style: none;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 7px;
+}

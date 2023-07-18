@@ -1,43 +1,44 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "PT Sans", sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "PT Sans", sans-serif;
 }
 
 .home,
 .about-us,
 .sign-in {
-  display: flex;
-  height: 100vh;
-  height: 100svh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+	display: flex;
+	height: 100vh;
+	height: 100svh;
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+	font-size: 3rem;
 }
 
 .about-us {
-  background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+	background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #fff;
+	font-size: 100px;
 }
 
 .sign-in {
-  background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-4.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+	background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-4.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #fff;
+	font-size: 100px;
 }
 
 @media screen and (max-width: 960px) {
-  .home,
-  .about-us,
-  .sign-up {
-    font-size: 60px;
-  }
+	.home,
+	.about-us,
+	.sign-up {
+		font-size: 60px;
+	}
 }
