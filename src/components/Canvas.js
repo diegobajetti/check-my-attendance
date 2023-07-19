@@ -12,10 +12,10 @@ import {
 import { fetchStudentInfo } from "../server.js";
 import Panel from "./Panel.js";
 import "./Canvas.css";
-// const fs = require("fs");
 
 const MODELS_URI = `${process.env.PUBLIC_URL}/models`;
 const LABELS_URI = `${process.env.PUBLIC_URL}/labels`;
+const NUM_IMGS_PER_LABEL = 10;
 
 const Canvas = ({
 	isLoggedIn,
@@ -71,7 +71,6 @@ const Canvas = ({
 		const context = canvas.getContext("2d");
 		context.globalAlpha = 0;
 		context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-		// canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 	}
 
 	function endVideo() {
@@ -79,13 +78,6 @@ const Canvas = ({
 		videoRef.current.srcObject.getTracks()[0].stop();
 		console.log("endVideo");
 		setCaptureVideo(false);
-
-		// const canvas = canvasRef.current;
-		// const context = canvas.getContext("2d");
-		// TODO: set canvas to black screen
-		// context.globalAlpha = 1;
-		// context.fillStyle = "#000000";
-		// context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 	}
 
 	function getLabeledFaceDescriptions() {
@@ -94,12 +86,7 @@ const Canvas = ({
 			labels.map(async (label) => {
 				const descriptions = [];
 
-				// TODO: get number of files in directory
-				// const numImgs = fs.readdir(LABELS_URI, (error, files) => {
-				// 	return files.length;
-				// });
-				const numImgs = 7;
-				for (let i = 1; i <= numImgs; i++) {
+				for (let i = 1; i <= NUM_IMGS_PER_LABEL; i++) {
 					const img = await faceapi.fetchImage(
 						`${LABELS_URI}/${label}/${i}.jpg`
 					);
@@ -158,7 +145,7 @@ const Canvas = ({
 				const results = resizedDetections.map((d) => {
 					return faceMatcher.findBestMatch(d.descriptor);
 				});
-				results.forEach((result, i) => {
+				results.forEach(async (result, i) => {
 					const box = resizedDetections[i].detection.box;
 					const drawBox = new faceapi.draw.DrawBox(box, {
 						label: result,
@@ -174,7 +161,7 @@ const Canvas = ({
 						);
 						dispatchSetStudentNewStatus(true);
 					} else {
-						const student = fetchStudentInfo(label);
+						const student = await fetchStudentInfo(label);
 						console.log(student);
 						if (student) {
 							const { firstName, lastName } = student;
@@ -214,7 +201,9 @@ const Canvas = ({
 						ref={canvasRef}
 					/>
 					<video
-						className="camera-canvas"
+						className={
+							captureVideo ? "camera-canvas" : "hide-video"
+						}
 						id="face-video"
 						ref={videoRef}
 						onPlay={handleOnPlay}

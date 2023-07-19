@@ -11,5 +11,9 @@
 	border-radius: 10px;
 }
 
+.hide-video {
+	display: none;
+}
+
 @media screen and (max-width: 960px) {
 }
