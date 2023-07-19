@@ -106,8 +106,8 @@ export const searchStudents = (searchTerm = "") => {
 				courseCodes = [],
 			} = student;
 			return (
-				(firstName.indexOf(searchTerm) !== -1 ||
-					lastName.indexOf(searchTerm) !== -1 ||
+				(firstName.toLowerCase().indexOf(searchTerm) !== -1 ||
+					lastName.toLowerCase().indexOf(searchTerm) !== -1 ||
 					id.indexOf(searchTerm) !== -1) &&
 				courseCodes.includes(selectedCourse)
 			);

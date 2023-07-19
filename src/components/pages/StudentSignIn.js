@@ -15,25 +15,23 @@ export function StudentSignIn({
 		<div className="container">
 			<h1 className="about-us">STUDENT SIGN IN</h1>
 			<div className="content-container">
-				<h1 className="content-h1">
-					Enable your web cam and sit still
-				</h1>
-				<p>lorem ipsum instruction text</p>
+				<h1 className="content-h1">Time to take attendance!</h1>
 				<p>
-					If you are a new student, you will be prompted to register
+					Enable your web cam and remove anything obstructing your
+					face (dark glasses, hat, etc).
 				</p>
-				<p>more lorem ipsum instruction text</p>
+				<p>
+					If you are not registered in the attendance taker for a
+					course, you will be prompted to register.
+				</p>
+				<p>
+					Click "Start Video Capture" to take your attendance. The
+					video camera may take a few seconds to show.
+				</p>
 				<Canvas />
 				{loggedIn && (
 					<div className="alert alert-primary">
 						<p>{`Welcome ${firstName} ${lastName}, you are in attendance for ${courseCode}`}</p>
-					</div>
-				)}
-				{!loggedIn && !isNewStudent && (
-					<div className="alert alert-danger">
-						Something went wrong, please hold still and try again.
-						Try removing anything that is obstructing your face
-						(dark glasses, hat, mask)
 					</div>
 				)}
 				{isNewStudent && !loggedIn && (

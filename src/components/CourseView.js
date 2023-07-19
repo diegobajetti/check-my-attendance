@@ -70,7 +70,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) => {
 	return {
 		dispatchSearchStudents: (searchTerm) =>
-			dispatch(searchStudents(searchTerm)),
+			dispatch(searchStudents(searchTerm.toLowerCase())),
 		dispatchSetSelectedStudent: (studentId) =>
 			dispatch(setSelectedStudent(studentId)),
 	};
