@@ -1,7 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
 import { connect } from "react-redux";
-import { setStudentLoginStatus } from "../redux/actions/student.js";
+import {
+	setStudentLoginStatus,
+	setStudentNewStatus,
+	setStudentFirstName,
+	setStudentLastName,
+	setStudentId,
+	addNewStudent,
+} from "../redux/actions/student.js";
+import { fetchStudentInfo } from "../server.js";
 import Panel from "./Panel.js";
 import "./Canvas.css";
 // const fs = require("fs");
@@ -9,7 +17,13 @@ import "./Canvas.css";
 const MODELS_URI = `${process.env.PUBLIC_URL}/models`;
 const LABELS_URI = `${process.env.PUBLIC_URL}/labels`;
 
-const Canvas = ({ dispatchSetLoginStatus }) => {
+const Canvas = ({
+	dispatchSetLoginStatus,
+	dispatchSetStudentNewStatus,
+	dispatchSetStudentFirstName,
+	dispatchSetStudentLastName,
+	dispatchSetStudentId,
+}) => {
 	const [modelsAreLoaded, setModelsAreLoaded] = useState(false);
 	const [captureVideo, setCaptureVideo] = useState(false);
 	const [failureMsg, setFailureMsg] = useState(null);
@@ -65,8 +79,8 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 		console.log("endVideo");
 		setCaptureVideo(false);
 
-		const canvas = canvasRef.current;
-		const context = canvas.getContext("2d");
+		// const canvas = canvasRef.current;
+		// const context = canvas.getContext("2d");
 		// TODO: set canvas to black screen
 		// context.globalAlpha = 1;
 		// context.fillStyle = "#000000";
@@ -75,7 +89,6 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 
 	function getLabeledFaceDescriptions() {
 		const labels = ["300168292"];
-		console.log("getLabeledFaceDescriptions");
 		return Promise.all(
 			labels.map(async (label) => {
 				const descriptions = [];
@@ -101,8 +114,6 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 	}
 
 	const handleOnPlay = async () => {
-		console.log("handleOnPlay");
-		console.log({ captureVideo });
 		if (!navigator.mediaDevices) {
 			console.error("mediaDevices not supported");
 			setFailureMsg("Media devices are not supported");
@@ -118,8 +129,8 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 				const canvas = canvasRef.current;
 
 				const displaySize = {
-					width: video.width,
-					height: video.height,
+					width: 480,
+					height: 640,
 				};
 				faceapi.matchDimensions(canvas, displaySize);
 
@@ -152,7 +163,22 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 						label: result,
 					});
 					drawBox.draw(canvas);
+
+					const student = fetchStudentInfo(result);
+					if (student) {
+						const { firstName, lastName } = student;
+						dispatchSetStudentFirstName(firstName);
+						dispatchSetStudentLastName(lastName);
+						dispatchSetStudentId(result);
+						dispatchSetLoginStatus(true);
+					}
 				});
+				if (results.length === 0) {
+					setFailureMsg(
+						"No match. If you not registered in the attendance taker, please do so below."
+					);
+					dispatchSetStudentNewStatus(true);
+				}
 			}
 		}, 100);
 	};
@@ -180,7 +206,6 @@ const Canvas = ({ dispatchSetLoginStatus }) => {
 					<video
 						className="camera-canvas"
 						id="face-video"
-						autoPlay
 						ref={videoRef}
 						onPlay={handleOnPlay}
 					/>
@@ -197,6 +222,14 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		dispatchSetLoginStatus: (status) =>
 			dispatch(setStudentLoginStatus(status)),
+		dispatchSetStudentNewStatus: (status) =>
+			dispatch(setStudentNewStatus(status)),
+		dispatchSetStudentFirstName: (firstName) =>
+			dispatch(setStudentFirstName(firstName)),
+		dispatchSetStudentLastName: (lastName) =>
+			dispatch(setStudentLastName(lastName)),
+		dispatchSetStudentId: (id) => dispatch(setStudentId(id)),
+		dispatchAddNewStudent: () => dispatch(addNewStudent()),
 	};
 };
 

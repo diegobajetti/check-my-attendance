@@ -1,6 +1,5 @@
 import {
-	SET_STUDENT_NEW,
-	SET_STUDENT_EXIST,
+	SET_STUDENT_NEW_STATUS,
 	SET_STUDENT_FN,
 	SET_STUDENT_LN,
 	SET_STUDENT_ID,
@@ -11,7 +10,7 @@ import {
 
 const initialState = {
 	currStudent: {
-		isNew: true,
+		isNew: false,
 		firstName: "",
 		lastName: "",
 		id: "",
@@ -60,10 +59,8 @@ const studentReducer = (
 	const { type, data } = action;
 
 	switch (type) {
-		case SET_STUDENT_NEW:
-			return { ...state, currStudent: { ...currStudent, isNew: true } };
-		case SET_STUDENT_EXIST:
-			return { ...state, currStudent: { ...currStudent, isNew: false } };
+		case SET_STUDENT_NEW_STATUS:
+			return { ...state, currStudent: { ...currStudent, isNew: data } };
 		case SET_STUDENT_FN:
 			return {
 				...state,

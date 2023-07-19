@@ -34,13 +34,6 @@ export function StudentSignIn({
 						<p>{`Welcome ${firstName} ${lastName}, you are in attendance for ${courseCode}`}</p>
 					</div>
 				)}
-				{!loggedIn && !isNewStudent && (
-					<div className="alert alert-danger">
-						Something went wrong, please hold still and try again.
-						Try removing anything that is obstructing your face
-						(dark glasses, hat, mask)
-					</div>
-				)}
 				{isNewStudent && !loggedIn && (
 					<div className="new-student-container">
 						<div className="alert alert-primary">

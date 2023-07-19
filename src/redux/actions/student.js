@@ -1,6 +1,5 @@
 import {
-	SET_STUDENT_NEW,
-	SET_STUDENT_EXIST,
+	SET_STUDENT_NEW_STATUS,
 	SET_STUDENT_FN,
 	SET_STUDENT_LN,
 	SET_STUDENT_ID,
@@ -9,15 +8,10 @@ import {
 	ADD_NEW_STUDENT,
 } from "../constants.js";
 
-function setStudentNew() {
+function setStudentNewStatus(status = true) {
 	return {
-		type: SET_STUDENT_NEW,
-	};
-}
-
-function setStudentExist() {
-	return {
-		type: SET_STUDENT_EXIST,
+		type: SET_STUDENT_NEW_STATUS,
+		data: status,
 	};
 }
 
@@ -72,8 +66,7 @@ const addNewStudent = () => {
 };
 
 export {
-	setStudentNew,
-	setStudentExist,
+	setStudentNewStatus,
 	setStudentFirstName,
 	setStudentLastName,
 	setStudentId,
