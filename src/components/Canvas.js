@@ -15,10 +15,9 @@ import "./Canvas.css";
 
 const MODELS_URI = `${process.env.PUBLIC_URL}/models`;
 const LABELS_URI = `${process.env.PUBLIC_URL}/labels`;
-const NUM_IMGS_PER_LABEL = 10;
+const NUM_IMGS_PER_LABEL = 5;
 
 const Canvas = ({
-	isLoggedIn,
 	dispatchSetLoginStatus,
 	dispatchSetStudentNewStatus,
 	dispatchSetStudentFirstName,
@@ -81,7 +80,7 @@ const Canvas = ({
 	}
 
 	function getLabeledFaceDescriptions() {
-		const labels = ["300168292"];
+		const labels = ["300666000"];
 		return Promise.all(
 			labels.map(async (label) => {
 				const descriptions = [];
@@ -155,7 +154,7 @@ const Canvas = ({
 					const label = result ? result._label : "";
 					console.log(label);
 
-					if (label === "Unknown") {
+					if (label.toLowerCase() === "unknown") {
 						setFailureMsg(
 							"No match. If you not registered in the attendance taker, please do so below."
 						);
