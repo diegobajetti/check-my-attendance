@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		dispatchSetProfLogOut: () => dispatch(setProfLogOut),
 		dispatchSetSelectedCourse: (courseCode) =>
-			dispatch(setSelectedCourse(courseCode)),
+			dispatch(setSelectedCourse(courseCode.toUpperCase())),
 	};
 };
 

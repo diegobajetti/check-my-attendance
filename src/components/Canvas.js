@@ -18,6 +18,7 @@ const MODELS_URI = `${process.env.PUBLIC_URL}/models`;
 const LABELS_URI = `${process.env.PUBLIC_URL}/labels`;
 
 const Canvas = ({
+	isLoggedIn,
 	dispatchSetLoginStatus,
 	dispatchSetStudentNewStatus,
 	dispatchSetStudentFirstName,
@@ -164,20 +165,29 @@ const Canvas = ({
 					});
 					drawBox.draw(canvas);
 
-					const student = fetchStudentInfo(result);
-					if (student) {
-						const { firstName, lastName } = student;
-						dispatchSetStudentFirstName(firstName);
-						dispatchSetStudentLastName(lastName);
-						dispatchSetStudentId(result);
-						dispatchSetLoginStatus(true);
+					const label = result ? result._label : "";
+					console.log(label);
+
+					if (label === "Unknown") {
+						setFailureMsg(
+							"No match. If you not registered in the attendance taker, please do so below."
+						);
+						dispatchSetStudentNewStatus(true);
+					} else {
+						const student = fetchStudentInfo(label);
+						console.log(student);
+						if (student) {
+							const { firstName, lastName } = student;
+							dispatchSetStudentFirstName(firstName);
+							dispatchSetStudentLastName(lastName);
+							dispatchSetStudentId(label);
+							dispatchSetLoginStatus(true);
+						}
 					}
 				});
 				if (results.length === 0) {
-					setFailureMsg(
-						"No match. If you not registered in the attendance taker, please do so below."
-					);
-					dispatchSetStudentNewStatus(true);
+					// TODO: loading icon? (too complex)
+					// maybe alert message that says "processing" above the video
 				}
 			}
 		}, 100);

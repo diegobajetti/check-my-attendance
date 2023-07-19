@@ -1,11 +1,12 @@
 const fetchStudentInfo = async (studentId) => {
 	let students = {};
 	try {
-		const response = await fetch("./studentInfo.json");
+		const response = await fetch(
+			`${process.env.PUBLIC_URL}/studentInfo.json`
+		);
 		if (!response.ok) {
 			throw new Error("Unable to fetch JSON data file");
 		}
-		console.log(response);
 		students = await response.json();
 	} catch (err) {
 		console.log("Error reading or parsing the JSON data file:", err);

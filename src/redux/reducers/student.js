@@ -1,7 +1,7 @@
 import {
 	SET_STUDENT_NEW_STATUS,
-	SET_STUDENT_FN,
-	SET_STUDENT_LN,
+	SET_STUDENT_FIRST_NAME,
+	SET_STUDENT_LAST_NAME,
 	SET_STUDENT_ID,
 	SET_STUDENT_COURSE_CODE,
 	SET_STUDENT_LOGGED_IN,
@@ -61,12 +61,12 @@ const studentReducer = (
 	switch (type) {
 		case SET_STUDENT_NEW_STATUS:
 			return { ...state, currStudent: { ...currStudent, isNew: data } };
-		case SET_STUDENT_FN:
+		case SET_STUDENT_FIRST_NAME:
 			return {
 				...state,
 				currStudent: { ...currStudent, firstName: data },
 			};
-		case SET_STUDENT_LN:
+		case SET_STUDENT_LAST_NAME:
 			return {
 				...state,
 				currStudent: { ...currStudent, lastName: data },

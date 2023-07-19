@@ -1,7 +1,7 @@
 import {
 	SET_STUDENT_NEW_STATUS,
-	SET_STUDENT_FN,
-	SET_STUDENT_LN,
+	SET_STUDENT_FIRST_NAME,
+	SET_STUDENT_LAST_NAME,
 	SET_STUDENT_ID,
 	SET_STUDENT_COURSE_CODE,
 	SET_STUDENT_LOGGED_IN,
@@ -17,14 +17,14 @@ function setStudentNewStatus(status = true) {
 
 function setStudentFirstName(firstName = "") {
 	return {
-		type: SET_STUDENT_FN,
+		type: SET_STUDENT_FIRST_NAME,
 		data: firstName,
 	};
 }
 
 function setStudentLastName(lastName = "") {
 	return {
-		type: SET_STUDENT_LN,
+		type: SET_STUDENT_LAST_NAME,
 		data: lastName,
 	};
 }
