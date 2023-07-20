@@ -74,7 +74,7 @@ const Canvas = ({
 
 	function endVideo() {
 		videoRef.current.pause();
-		videoRef.current.srcObject.getTracks()[0].stop();
+		if (videoRef.current.srcObject) videoRef.current.srcObject.getTracks()[0].stop();
 		console.log("endVideo");
 		setCaptureVideo(false);
 	}
