@@ -1,15 +1,15 @@
 {
-  "main.css": "/check-my-attendance/static/css/main.d27421e1.chunk.css",
-  "main.js": "/check-my-attendance/static/js/main.dee5e3b6.chunk.js",
-  "main.js.map": "/check-my-attendance/static/js/main.dee5e3b6.chunk.js.map",
+  "main.css": "/check-my-attendance/static/css/main.ddd00db4.chunk.css",
+  "main.js": "/check-my-attendance/static/js/main.a20c0f82.chunk.js",
+  "main.js.map": "/check-my-attendance/static/js/main.a20c0f82.chunk.js.map",
   "runtime~main.js": "/check-my-attendance/static/js/runtime~main.83ef22a4.js",
   "runtime~main.js.map": "/check-my-attendance/static/js/runtime~main.83ef22a4.js.map",
-  "static/css/2.5bede349.chunk.css": "/check-my-attendance/static/css/2.5bede349.chunk.css",
-  "static/js/2.95283002.chunk.js": "/check-my-attendance/static/js/2.95283002.chunk.js",
-  "static/js/2.95283002.chunk.js.map": "/check-my-attendance/static/js/2.95283002.chunk.js.map",
+  "static/css/2.20a03b40.chunk.css": "/check-my-attendance/static/css/2.20a03b40.chunk.css",
+  "static/js/2.bae0740c.chunk.js": "/check-my-attendance/static/js/2.bae0740c.chunk.js",
+  "static/js/2.bae0740c.chunk.js.map": "/check-my-attendance/static/js/2.bae0740c.chunk.js.map",
   "index.html": "/check-my-attendance/index.html",
-  "precache-manifest.fd4504552242770f0be9d3663531e5ed.js": "/check-my-attendance/precache-manifest.fd4504552242770f0be9d3663531e5ed.js",
+  "precache-manifest.58b59a45c61a89f2435137669263f041.js": "/check-my-attendance/precache-manifest.58b59a45c61a89f2435137669263f041.js",
   "service-worker.js": "/check-my-attendance/service-worker.js",
-  "static/css/2.5bede349.chunk.css.map": "/check-my-attendance/static/css/2.5bede349.chunk.css.map",
-  "static/css/main.d27421e1.chunk.css.map": "/check-my-attendance/static/css/main.d27421e1.chunk.css.map"
+  "static/css/2.20a03b40.chunk.css.map": "/check-my-attendance/static/css/2.20a03b40.chunk.css.map",
+  "static/css/main.ddd00db4.chunk.css.map": "/check-my-attendance/static/css/main.ddd00db4.chunk.css.map"
 }
