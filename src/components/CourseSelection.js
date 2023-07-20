@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setStudentCourseCode } from "../redux/actions/student";
+import { setStudentCourseCode, addNewStudent } from "../redux/actions/student";
 import "./CourseSelection.css";
 
 const CourseSelection = ({
 	id = "",
 	studentList = [],
 	dispatchSetCourseCode,
+	dispatchAddNewStudent,
 }) => {
 	const filteredStudents = studentList.filter((student) => id === student.id);
 
@@ -14,6 +15,7 @@ const CourseSelection = ({
 		filteredStudents.length > 0 ? filteredStudents[0].courseCodes : [];
 
 	const [selectedCourse, setSelectedCourse] = useState(null);
+	const [addNewCourse, setAddNewCourse] = useState(false);
 
 	return (
 		<div className="course-selection-container">
@@ -28,9 +30,10 @@ const CourseSelection = ({
 							id={courseCode}
 							key={courseCode}
 							value={courseCode}
-							onChange={(event) =>
-								setSelectedCourse(event.currentTarget.value)
-							}
+							disabled={addNewCourse}
+							onChange={(event) => {
+								setSelectedCourse(event.currentTarget.value);
+							}}
 						></input>
 						<label className="form-check-label" for={courseCode}>
 							{courseCode}
@@ -38,9 +41,27 @@ const CourseSelection = ({
 					</div>
 				);
 			})}
+			<div className="form-check">
+				<label className="form-check-label" for="add">
+					Register in another course:
+				</label>
+				<input
+					type="text"
+					id="add"
+					key="add"
+					onChange={(event) => {
+						const val = event.target.value;
+						setSelectedCourse(val);
+						setAddNewCourse(!!val);
+					}}
+				></input>
+			</div>
 			<button
 				className="btn btn-dark"
-				onClick={() => dispatchSetCourseCode(selectedCourse)}
+				onClick={() => {
+					dispatchSetCourseCode(selectedCourse);
+					dispatchAddNewStudent();
+				}}
 			>
 				Select Course
 			</button>
@@ -64,6 +85,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		dispatchSetCourseCode: (courseCode) =>
 			dispatch(setStudentCourseCode(courseCode)),
+		dispatchAddNewStudent: () => dispatch(addNewStudent()),
 	};
 };
 

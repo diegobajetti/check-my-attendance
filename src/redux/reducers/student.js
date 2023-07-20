@@ -97,34 +97,41 @@ const studentReducer = (
 			let studentRecord = studentList.filter(
 				(student) => student.id === id
 			);
+			const studentExists = studentRecord.length > 0;
+			const alreadyInCourse =
+				studentExists &&
+				studentRecord[0].courseCodes.includes(courseCode);
 
 			// if student is already registered, add the course code to their course code array
-			studentRecord =
-				studentRecord.length > 0
-					? {
-							...studentRecord[0],
-							courseCodes: [
-								...studentRecord[0].courseCodes,
-								courseCode,
-							],
-					  }
-					: {
-							firstName,
-							lastName,
-							id,
-							courseCodes: [courseCode],
-							loggedIn: false,
-					  };
+			studentRecord = studentExists
+				? {
+						...studentRecord[0],
+						courseCodes: [
+							...studentRecord[0].courseCodes,
+							courseCode,
+						],
+				  }
+				: {
+						firstName,
+						lastName,
+						id,
+						courseCodes: [courseCode],
+						loggedIn: false,
+				  };
 			const numCourseCodes = studentRecord.courseCodes.length;
-			return {
-				...state,
-				studentList: [...studentList, studentRecord].filter(
-					(student) =>
-						student.id !== id ||
-						(student.id === id &&
-							student.courseCodes.length === numCourseCodes)
-				),
-			};
+
+			return alreadyInCourse
+				? { ...state }
+				: {
+						...state,
+						studentList: [...studentList, studentRecord].filter(
+							(student) =>
+								student.id !== id ||
+								(student.id === id &&
+									student.courseCodes.length ===
+										numCourseCodes)
+						),
+				  };
 		default:
 			return state;
 	}

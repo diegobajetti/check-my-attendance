@@ -9,8 +9,10 @@ export function StudentSignIn({
 	loggedIn,
 	firstName,
 	lastName,
+	id,
 	courseCode,
 }) {
+	const welcomeMsg = `Welcome ${firstName} ${lastName} (${id})`;
 	return (
 		<div className="container">
 			<h1 className="about-us">STUDENT SIGN IN</h1>
@@ -38,14 +40,14 @@ export function StudentSignIn({
 					<div>
 						{courseCode ? (
 							<div className="alert alert-primary">
-								<p>{`Welcome ${firstName} ${lastName}, you are ${
+								<p>{`${welcomeMsg}, you are ${
 									isNewStudent ? "registered and " : ""
 								}in attendance for ${courseCode}`}</p>
 							</div>
 						) : (
 							<>
 								<div className="alert alert-primary">
-									<p>{`Welcome ${firstName} ${lastName}`}</p>
+									<p>{`${welcomeMsg}`}</p>
 								</div>
 								<CourseSelection></CourseSelection>
 							</>
@@ -69,7 +71,7 @@ export function StudentSignIn({
 
 const mapStateToProps = ({
 	student: {
-		currStudent: { isNew, loggedIn, firstName, lastName, courseCode },
+		currStudent: { isNew, loggedIn, firstName, lastName, id, courseCode },
 	},
 }) => {
 	return {
@@ -77,6 +79,7 @@ const mapStateToProps = ({
 		loggedIn,
 		firstName,
 		lastName,
+		id,
 		courseCode,
 	};
 };
