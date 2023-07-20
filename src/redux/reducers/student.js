@@ -19,9 +19,9 @@ const initialState = {
 	},
 	studentList: [
 		{
-			firstName: "Christina",
-			lastName: "Song",
-			id: "300168292",
+			firstName: "Jennifer",
+			lastName: "Lawrence",
+			id: "300666000",
 			courseCodes: ["CSI3140", "CSI3131"],
 		},
 		{
