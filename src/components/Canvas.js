@@ -9,7 +9,7 @@ import {
 	setStudentId,
 	addNewStudent,
 } from "../redux/actions/student.js";
-import { fetchStudentInfo } from "../server.js";
+import { fetchListOfStudentIds, fetchStudentInfo } from "../server.js";
 import Panel from "./Panel.js";
 import "./Canvas.css";
 
@@ -28,6 +28,7 @@ const Canvas = ({
 	const [captureVideo, setCaptureVideo] = useState(false);
 	const [failureMsg, setFailureMsg] = useState(null);
 	const [loadingMsg, setLoadingMsg] = useState(null);
+	const [labels, setLabels] = useState([]);
 
 	const canvasRef = useRef(null);
 	const videoRef = useRef(null);
@@ -49,6 +50,18 @@ const Canvas = ({
 				setModelsAreLoaded(false);
 				setFailureMsg("Error loading models");
 			});
+
+		const fetchLabels = async () => {
+			try {
+				const labels = await fetchListOfStudentIds();
+				console.log(labels);
+				setLabels(labels);
+			} catch (error) {
+				console.error("Error fetching list of student ids:", error);
+			}
+		};
+
+		fetchLabels();
 	}, []);
 
 	function startVideo() {
@@ -56,7 +69,11 @@ const Canvas = ({
 		setLoadingMsg("Loading video...");
 		navigator.mediaDevices
 			.getUserMedia({
-				video: true,
+				video: {
+					width: { ideal: 640 },
+					height: { ideal: 480 },
+					frameRate: { ideal: 30 },
+				},
 				audio: false,
 			})
 			.then((stream) => {
@@ -88,7 +105,7 @@ const Canvas = ({
 
 	function getLabeledFaceDescriptions() {
 		setLoadingMsg("Loading labeled face descriptions...");
-		const labels = ["300666000"];
+
 		return Promise.all(
 			labels.map(async (label) => {
 				const descriptions = [];
