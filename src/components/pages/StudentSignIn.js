@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "../../App.css";
-import { Canvas, NewStudentForm } from "../index.js";
+import { Canvas, CourseSelection, NewStudentForm } from "../index.js";
 import "./StudentSignIn.css";
 
 export function StudentSignIn({
@@ -25,13 +25,31 @@ export function StudentSignIn({
 					course, you will be prompted to register.
 				</p>
 				<p>
-					Click "Start Video Capture" to take your attendance. The
-					video camera may take a few seconds to show.
+					Click "Start Video Capture" to take your attendance and
+					click "End Video Capture" (it will be the same button as the
+					start button) once you are recognized.
+				</p>
+				<p>
+					(The video camera may take a few seconds to show and the
+					facial recognition may need a few seconds to recognize you.)
 				</p>
 				<Canvas />
 				{loggedIn && (
-					<div className="alert alert-primary">
-						<p>{`Welcome ${firstName} ${lastName}, you are in attendance for ${courseCode}`}</p>
+					<div>
+						{courseCode ? (
+							<div className="alert alert-primary">
+								<p>{`Welcome ${firstName} ${lastName}, you are ${
+									isNewStudent ? "registered and " : ""
+								}in attendance for ${courseCode}`}</p>
+							</div>
+						) : (
+							<>
+								<div className="alert alert-primary">
+									<p>{`Welcome ${firstName} ${lastName}`}</p>
+								</div>
+								<CourseSelection></CourseSelection>
+							</>
+						)}
 					</div>
 				)}
 				{isNewStudent && !loggedIn && (

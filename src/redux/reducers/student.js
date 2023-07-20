@@ -22,7 +22,7 @@ const initialState = {
 			firstName: "Jennifer",
 			lastName: "Lawrence",
 			id: "300666000",
-			courseCodes: ["CSI3140", "CSI3131"],
+			courseCodes: ["CSI3131", "CSI3104", "CSI3140", "CEG3185"],
 		},
 		{
 			firstName: "Khaled",
@@ -46,7 +46,7 @@ const initialState = {
 			firstName: "Toad",
 			lastName: "Mushroom",
 			id: "300111222",
-			courseCodes: ["CSI3131", "CSI3104", "CSI3140", "CEG3185"],
+			courseCodes: ["CSI3131", "CSI3140"],
 		},
 	],
 };

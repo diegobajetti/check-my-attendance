@@ -24,7 +24,7 @@ const initialState = {
 		{
 			email: "prof1@uottawa.ca",
 			password: "password1",
-			courseCodes: ["CSI3140"],
+			courseCodes: ["CSI3140", "CSI3104"],
 			firstName: "Walter",
 			lastName: "White",
 		},
