@@ -19,34 +19,34 @@ const initialState = {
 	},
 	studentList: [
 		{
+			firstName: "Emilia",
+			lastName: "Clarke",
+			id: "300222000",
+			courseCodes: ["CSI3140", "CEG3185"],
+		},
+		{
+			firstName: "Mark",
+			lastName: "Rober",
+			id: "300333000",
+			courseCodes: ["CSI3131", "CSI3104", "CEG3185"],
+		},
+		{
+			firstName: "Ryan",
+			lastName: "Gosling",
+			id: "300444000",
+			courseCodes: ["CSI3131", "CSI3104", "CSI3140"],
+		},
+		{
+			firstName: "Margot",
+			lastName: "Robbie",
+			id: "300555000",
+			courseCodes: ["CSI3131", "CSI3140"],
+		},
+		{
 			firstName: "Jennifer",
 			lastName: "Lawrence",
 			id: "300666000",
 			courseCodes: ["CSI3131", "CSI3104", "CSI3140", "CEG3185"],
-		},
-		{
-			firstName: "Khaled",
-			lastName: "Elbasiouni",
-			id: "300123456",
-			courseCodes: ["CSI3131", "CSI3104", "CEG3185"],
-		},
-		{
-			firstName: "Diego",
-			lastName: "Bajetti",
-			id: "300999000",
-			courseCodes: ["CSI3140", "CEG3185"],
-		},
-		{
-			firstName: "Yassine",
-			lastName: "Sami",
-			id: "300333444",
-			courseCodes: ["CSI3131", "CSI3104", "CSI3140"],
-		},
-		{
-			firstName: "Toad",
-			lastName: "Mushroom",
-			id: "300111222",
-			courseCodes: ["CSI3131", "CSI3140"],
 		},
 	],
 };
