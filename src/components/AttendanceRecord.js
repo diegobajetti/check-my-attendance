@@ -38,8 +38,8 @@ const AttendanceRecord = ({ firstName, lastName, id, selectedCourse }) => {
 		);
 	}
 
-	const entries = Object.entries(record);
-	return (
+	const entries = record ? Object.entries(record) : [];
+	return entries.length > 0 ? (
 		<div>
 			<h2 id="attendance-record-title">{`Viewing ${firstName} ${lastName} (${id})'s attendance record`}</h2>
 			<div className="container">
@@ -81,6 +81,8 @@ const AttendanceRecord = ({ firstName, lastName, id, selectedCourse }) => {
 				})}
 			</div>
 		</div>
+	) : (
+		<p>No attendance records for this student.</p>
 	);
 };
 
