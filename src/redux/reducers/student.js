@@ -19,33 +19,33 @@ const initialState = {
 	},
 	studentList: [
 		{
-			firstName: "Jennifer",
-			lastName: "Lawrence",
-			id: "300666000",
-			courseCodes: ["CSI3140", "CSI3131"],
-		},
-		{
-			firstName: "Khaled",
-			lastName: "Elbasiouni",
-			id: "300123456",
-			courseCodes: ["CSI3131", "CSI3104", "CEG3185"],
-		},
-		{
-			firstName: "Diego",
-			lastName: "Bajetti",
-			id: "300999000",
+			firstName: "Emilia",
+			lastName: "Clarke",
+			id: "300222000",
 			courseCodes: ["CSI3140", "CEG3185"],
 		},
 		{
-			firstName: "Yassine",
-			lastName: "Sami",
-			id: "300333444",
+			firstName: "Mark",
+			lastName: "Rober",
+			id: "300333000",
+			courseCodes: ["CSI3131", "CSI3104", "CEG3185"],
+		},
+		{
+			firstName: "Ryan",
+			lastName: "Gosling",
+			id: "300444000",
 			courseCodes: ["CSI3131", "CSI3104", "CSI3140"],
 		},
 		{
-			firstName: "Toad",
-			lastName: "Mushroom",
-			id: "300111222",
+			firstName: "Margot",
+			lastName: "Robbie",
+			id: "300555000",
+			courseCodes: ["CSI3131", "CSI3140"],
+		},
+		{
+			firstName: "Jennifer",
+			lastName: "Lawrence",
+			id: "300666000",
 			courseCodes: ["CSI3131", "CSI3104", "CSI3140", "CEG3185"],
 		},
 	],
@@ -97,34 +97,41 @@ const studentReducer = (
 			let studentRecord = studentList.filter(
 				(student) => student.id === id
 			);
+			const studentExists = studentRecord.length > 0;
+			const alreadyInCourse =
+				studentExists &&
+				studentRecord[0].courseCodes.includes(courseCode);
 
 			// if student is already registered, add the course code to their course code array
-			studentRecord =
-				studentRecord.length > 0
-					? {
-							...studentRecord[0],
-							courseCodes: [
-								...studentRecord[0].courseCodes,
-								courseCode,
-							],
-					  }
-					: {
-							firstName,
-							lastName,
-							id,
-							courseCodes: [courseCode],
-							loggedIn: false,
-					  };
+			studentRecord = studentExists
+				? {
+						...studentRecord[0],
+						courseCodes: [
+							...studentRecord[0].courseCodes,
+							courseCode,
+						],
+				  }
+				: {
+						firstName,
+						lastName,
+						id,
+						courseCodes: [courseCode],
+						loggedIn: false,
+				  };
 			const numCourseCodes = studentRecord.courseCodes.length;
-			return {
-				...state,
-				studentList: [...studentList, studentRecord].filter(
-					(student) =>
-						student.id !== id ||
-						(student.id === id &&
-							student.courseCodes.length === numCourseCodes)
-				),
-			};
+
+			return alreadyInCourse
+				? { ...state }
+				: {
+						...state,
+						studentList: [...studentList, studentRecord].filter(
+							(student) =>
+								student.id !== id ||
+								(student.id === id &&
+									student.courseCodes.length ===
+										numCourseCodes)
+						),
+				  };
 		default:
 			return state;
 	}

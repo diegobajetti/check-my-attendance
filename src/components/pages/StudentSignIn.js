@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "../../App.css";
-import { Canvas, NewStudentForm } from "../index.js";
+import { Canvas, CourseSelection, NewStudentForm } from "../index.js";
 import "./StudentSignIn.css";
 
 export function StudentSignIn({
@@ -9,10 +9,12 @@ export function StudentSignIn({
 	loggedIn,
 	firstName,
 	lastName,
+	id,
 	courseCode,
 }) {
+	const welcomeMsg = `Welcome, ${firstName} ${lastName} (${id})`;
 	return (
-		<div className="container">
+		<div className="student-page-container">
 			<h1 className="about-us">STUDENT SIGN IN</h1>
 			<div className="content-container">
 				<h1 className="content-h1">Time to take attendance!</h1>
@@ -25,13 +27,31 @@ export function StudentSignIn({
 					course, you will be prompted to register.
 				</p>
 				<p>
-					Click "Start Video Capture" to take your attendance. The
-					video camera may take a few seconds to show.
+					Click "Start Video Capture" to take your attendance and
+					click "End Video Capture" (it will be the same button as the
+					start button) once you are recognized.
+				</p>
+				<p>
+					(The video camera may take a few seconds to show and the
+					facial recognition may need a few seconds to recognize you.)
 				</p>
 				<Canvas />
 				{loggedIn && (
-					<div className="alert alert-primary">
-						<p>{`Welcome ${firstName} ${lastName}, you are in attendance for ${courseCode}`}</p>
+					<div>
+						{courseCode ? (
+							<div className="alert alert-primary">
+								<p>{`${welcomeMsg}, you are ${
+									isNewStudent ? "registered and " : ""
+								}in attendance for ${courseCode}`}</p>
+							</div>
+						) : (
+							<>
+								<div className="alert alert-primary">
+									<p>{`${welcomeMsg}`}</p>
+								</div>
+								<CourseSelection></CourseSelection>
+							</>
+						)}
 					</div>
 				)}
 				{isNewStudent && !loggedIn && (
@@ -51,7 +71,7 @@ export function StudentSignIn({
 
 const mapStateToProps = ({
 	student: {
-		currStudent: { isNew, loggedIn, firstName, lastName, courseCode },
+		currStudent: { isNew, loggedIn, firstName, lastName, id, courseCode },
 	},
 }) => {
 	return {
@@ -59,6 +79,7 @@ const mapStateToProps = ({
 		loggedIn,
 		firstName,
 		lastName,
+		id,
 		courseCode,
 	};
 };

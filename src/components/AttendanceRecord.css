@@ -1,3 +1,11 @@
 #attendance-record-title {
 	margin-top: 40px;
 }
+
+.date-col {
+	max-width: 60px;
+}
+
+.status-col {
+	margin-left: 50px;
+}

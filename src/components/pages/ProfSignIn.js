@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/prof.js";
 import { Panel, FormGroup } from "../index";
 import "../../App.css";
+import "./ProfSignIn.css";
 
 export function ProfSignIn({
 	email,
@@ -39,12 +40,14 @@ export function ProfSignIn({
 							labelText="Email"
 							inputRef={emailRef}
 							onChangeFunc={dispatchSetProfEmail}
+							classNameInput="prof-email-input"
 						></FormGroup>
 						<FormGroup
 							labelText="Password"
 							inputRef={passwordRef}
 							type="password"
 							onChangeFunc={dispatchSetProfPassword}
+							classNameInput="prof-password-input"
 						></FormGroup>
 						<button
 							type="submit"

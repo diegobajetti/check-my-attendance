@@ -9,7 +9,7 @@ import {
 	setStudentId,
 	addNewStudent,
 } from "../redux/actions/student.js";
-import { fetchStudentInfo } from "../server.js";
+import { fetchListOfStudentIds, fetchStudentInfo } from "../server.js";
 import Panel from "./Panel.js";
 import "./Canvas.css";
 
@@ -27,11 +27,14 @@ const Canvas = ({
 	const [modelsAreLoaded, setModelsAreLoaded] = useState(false);
 	const [captureVideo, setCaptureVideo] = useState(false);
 	const [failureMsg, setFailureMsg] = useState(null);
+	const [loadingMsg, setLoadingMsg] = useState(null);
+	const [labels, setLabels] = useState([]);
 
 	const canvasRef = useRef(null);
 	const videoRef = useRef(null);
 
 	useEffect(() => {
+		setLoadingMsg("Loading models...");
 		Promise.all([
 			faceapi.nets.tinyFaceDetector.loadFromUri(MODELS_URI),
 			faceapi.nets.ssdMobilenetv1.loadFromUri(MODELS_URI),
@@ -41,18 +44,36 @@ const Canvas = ({
 			.then(() => {
 				setModelsAreLoaded(true);
 				setFailureMsg(null);
+				setLoadingMsg(null);
 			})
 			.catch((error) => {
 				setModelsAreLoaded(false);
 				setFailureMsg("Error loading models");
 			});
-	});
 
-	function startVideo() {
+		const fetchLabels = async () => {
+			try {
+				const labels = await fetchListOfStudentIds();
+				console.log(labels);
+				setLabels(labels);
+			} catch (error) {
+				console.error("Error fetching list of student ids:", error);
+			}
+		};
+
+		fetchLabels();
+	}, []);
+
+	const startVideo = () => {
 		setCaptureVideo(true);
+		setLoadingMsg("Loading video...");
 		navigator.mediaDevices
 			.getUserMedia({
-				video: true,
+				video: {
+					width: { ideal: 640 },
+					height: { ideal: 480 },
+					frameRate: { ideal: 30 },
+				},
 				audio: false,
 			})
 			.then((stream) => {
@@ -61,26 +82,30 @@ const Canvas = ({
 				video.play();
 
 				setFailureMsg(null);
+				setLoadingMsg(null);
 			})
 			.catch((error) => {
-				setFailureMsg("Error getting media devices");
+				setFailureMsg("Error getting media devices:", error);
 			});
 
 		const canvas = canvasRef.current;
 		const context = canvas.getContext("2d");
 		context.globalAlpha = 0;
 		context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-	}
+	};
 
-	function endVideo() {
+	const endVideo = () => {
 		videoRef.current.pause();
 		videoRef.current.srcObject.getTracks()[0].stop();
 		console.log("endVideo");
-		setCaptureVideo(false);
-	}
 
-	function getLabeledFaceDescriptions() {
-		const labels = ["300666000"];
+		setCaptureVideo(false);
+		setLoadingMsg(null);
+	};
+
+	const getLabeledFaceDescriptions = () => {
+		setLoadingMsg("Loading labeled face descriptions...");
+
 		return Promise.all(
 			labels.map(async (label) => {
 				const descriptions = [];
@@ -95,10 +120,11 @@ const Canvas = ({
 						.withFaceDescriptor();
 					descriptions.push(detections.descriptor);
 				}
+				setLoadingMsg(null);
 				return new faceapi.LabeledFaceDescriptors(label, descriptions);
 			})
 		);
-	}
+	};
 
 	const handleOnPlay = async () => {
 		if (!navigator.mediaDevices) {
@@ -127,10 +153,12 @@ const Canvas = ({
 					labeledFaceDescriptors
 				);
 
+				setLoadingMsg("Loading face detections...");
 				const detections = await faceapi
 					.detectAllFaces(video)
 					.withFaceLandmarks()
 					.withFaceDescriptors();
+				setLoadingMsg(null);
 
 				const resizedDetections = faceapi.resizeResults(
 					detections,
@@ -144,6 +172,8 @@ const Canvas = ({
 				const results = resizedDetections.map((d) => {
 					return faceMatcher.findBestMatch(d.descriptor);
 				});
+
+				setLoadingMsg("Drawing detection boxes...");
 				results.forEach(async (result, i) => {
 					const box = resizedDetections[i].detection.box;
 					const drawBox = new faceapi.draw.DrawBox(box, {
@@ -152,7 +182,6 @@ const Canvas = ({
 					drawBox.draw(canvas);
 
 					const label = result ? result._label : "";
-					console.log(label);
 
 					if (label.toLowerCase() === "unknown") {
 						setFailureMsg(
@@ -163,20 +192,20 @@ const Canvas = ({
 						const student = await fetchStudentInfo(label);
 						console.log(student);
 						if (student) {
+							setFailureMsg(null);
+
 							const { firstName, lastName } = student;
 							dispatchSetStudentFirstName(firstName);
 							dispatchSetStudentLastName(lastName);
 							dispatchSetStudentId(label);
 							dispatchSetLoginStatus(true);
+							dispatchSetStudentNewStatus(false);
 						}
 					}
 				});
-				if (results.length === 0) {
-					// TODO: loading icon? (too complex)
-					// maybe alert message that says "processing" above the video
-				}
+				setLoadingMsg(null);
 			}
-		}, 100);
+		}, 1000);
 	};
 
 	return (
@@ -192,26 +221,38 @@ const Canvas = ({
 					</button>
 				)}
 			</div>
-			{modelsAreLoaded && (
-				<Panel className="canvas-panel">
-					<canvas
-						className="camera-canvas"
-						id="camera-canvas"
-						ref={canvasRef}
-					/>
-					<video
-						className={
-							captureVideo ? "camera-canvas" : "hide-video"
-						}
-						id="face-video"
-						ref={videoRef}
-						onPlay={handleOnPlay}
-					/>
-				</Panel>
-			)}
-			{failureMsg && (
-				<div className="alert alert-danger">{failureMsg}</div>
-			)}
+
+			<div className="convas-content-container">
+				{captureVideo && loadingMsg && (
+					<div className="loading-container">
+						<div className="spinner-border" role="status">
+							<span className="sr-only">Loading...</span>
+						</div>
+						<p>{loadingMsg}</p>
+					</div>
+				)}
+
+				{modelsAreLoaded && (
+					<Panel className="canvas-panel">
+						<canvas
+							className="camera-canvas"
+							id="camera-canvas"
+							ref={canvasRef}
+						/>
+						<video
+							className={
+								captureVideo ? "camera-canvas" : "hide-video"
+							}
+							id="face-video"
+							ref={videoRef}
+							onPlay={handleOnPlay}
+						/>
+					</Panel>
+				)}
+				{failureMsg && (
+					<div className="alert alert-danger">{failureMsg}</div>
+				)}
+			</div>
 		</>
 	);
 };
