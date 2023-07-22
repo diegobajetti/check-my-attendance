@@ -6,6 +6,7 @@ import {
 	setStudentId,
 	setStudentCourseCode,
 	addNewStudent,
+	setStudentLoginStatus,
 } from "../redux/actions/student";
 import FormGroup from "./FormGroup";
 import Panel from "./Panel";
@@ -18,6 +19,7 @@ export const NewStudentForm = ({
 	dispatchSetStudentLastName,
 	dispatchSetStudentId,
 	dispatchSetStudentCourseCode,
+	dispatchSetStudentLoginStatus,
 }) => {
 	const firstNameRef = useRef(null);
 	const lastNameRef = useRef(null);
@@ -53,6 +55,7 @@ export const NewStudentForm = ({
 					onClick={(event) => {
 						event.preventDefault();
 						dispatchAddNewStudent();
+						dispatchSetStudentLoginStatus(true);
 						firstNameRef.current.value = "";
 						lastNameRef.current.value = "";
 						idRef.current.value = "";
@@ -76,6 +79,8 @@ const mapDispatchToProps = (dispatch) => {
 		dispatchSetStudentId: (id = "") => dispatch(setStudentId(id)),
 		dispatchSetStudentCourseCode: (courseCode = "") =>
 			dispatch(setStudentCourseCode(courseCode)),
+		dispatchSetStudentLoginStatus: (status) =>
+			dispatch(setStudentLoginStatus(status)),
 	};
 };
 
