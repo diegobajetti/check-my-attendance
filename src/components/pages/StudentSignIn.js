@@ -14,7 +14,7 @@ export function StudentSignIn({
 }) {
 	const welcomeMsg = `Welcome, ${firstName} ${lastName} (${id})`;
 	return (
-		<div className="container">
+		<div className="student-page-container">
 			<h1 className="about-us">STUDENT SIGN IN</h1>
 			<div className="content-container">
 				<h1 className="content-h1">Time to take attendance!</h1>

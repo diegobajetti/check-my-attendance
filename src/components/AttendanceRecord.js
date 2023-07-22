@@ -42,16 +42,16 @@ const AttendanceRecord = ({ firstName, lastName, id, selectedCourse }) => {
 	return (
 		<div>
 			<h2 id="attendance-record-title">{`Viewing ${firstName} ${lastName} (${id})'s attendance record`}</h2>
-			<div className="tcontainer tex-left">
-				<div className="row">
-					<div className="col">Date (dd/mm/yy)</div>
-					<div className="col">Attendance</div>
+			<div className="container">
+				<div className="row justify-content-start">
+					<div className="col date-col">Date (dd/mm/yy)</div>
+					<div className="col status-col">Attendance</div>
 				</div>
 				{entries.map(([date, didAttend]) => {
 					return (
-						<div className="row" key={date}>
-							<div className="col">{date}</div>
-							<div className="col">
+						<div className="row justify-content-start" key={date}>
+							<div className="col date-col">{date}</div>
+							<div className="col status-col">
 								{didAttend ? (
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

@@ -64,7 +64,7 @@ const Canvas = ({
 		fetchLabels();
 	}, []);
 
-	function startVideo() {
+	const startVideo = () => {
 		setCaptureVideo(true);
 		setLoadingMsg("Loading video...");
 		navigator.mediaDevices
@@ -85,25 +85,25 @@ const Canvas = ({
 				setLoadingMsg(null);
 			})
 			.catch((error) => {
-				setFailureMsg("Error getting media devices");
+				setFailureMsg("Error getting media devices:", error);
 			});
 
 		const canvas = canvasRef.current;
 		const context = canvas.getContext("2d");
 		context.globalAlpha = 0;
 		context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-	}
+	};
 
-	function endVideo() {
+	const endVideo = () => {
 		videoRef.current.pause();
 		videoRef.current.srcObject.getTracks()[0].stop();
 		console.log("endVideo");
 
 		setCaptureVideo(false);
 		setLoadingMsg(null);
-	}
+	};
 
-	function getLabeledFaceDescriptions() {
+	const getLabeledFaceDescriptions = () => {
 		setLoadingMsg("Loading labeled face descriptions...");
 
 		return Promise.all(
@@ -124,7 +124,7 @@ const Canvas = ({
 				return new faceapi.LabeledFaceDescriptors(label, descriptions);
 			})
 		);
-	}
+	};
 
 	const handleOnPlay = async () => {
 		if (!navigator.mediaDevices) {
@@ -205,7 +205,7 @@ const Canvas = ({
 				});
 				setLoadingMsg(null);
 			}
-		}, 100);
+		}, 1000);
 	};
 
 	return (
