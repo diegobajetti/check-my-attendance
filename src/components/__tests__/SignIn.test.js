@@ -4,7 +4,7 @@ import SignIn from "../pages/SignIn";
 import { screen, render, fireEvent, cleanup } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-// Mock useNavigate
+//mock useNavigate
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
@@ -12,6 +12,20 @@ jest.mock("react-router-dom", () => ({
 
 afterEach(() => {
   cleanup();
+});
+
+test("renders both 'Student Sign In' and 'Professor Sign In' cards", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <SignIn />
+      </MemoryRouter>
+    );
+  
+    const studentCard = screen.getByText("Student Sign In");
+    const professorCard = screen.getByText("Professor Sign In");
+  
+    expect(studentCard).toBeInTheDocument();
+    expect(professorCard).toBeInTheDocument();
 });
 
 test("test student signin card", () => {
@@ -46,4 +60,18 @@ test("test professor signin card", () => {
 
   //check if navigate was called with the correct path
   expect(navigate).toHaveBeenCalledWith("/prof-sign-in");
+});
+
+test("displays the correct h3 text inside both cards", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <SignIn />
+      </MemoryRouter>
+    );
+  
+    const studentCard = screen.getByText("Student Sign In");
+    const professorCard = screen.getByText("Professor Sign In");
+  
+    expect(studentCard.tagName).toBe("H3");
+    expect(professorCard.tagName).toBe("H3");
 });
