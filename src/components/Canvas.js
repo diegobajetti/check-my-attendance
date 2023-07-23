@@ -70,8 +70,6 @@ const Canvas = ({
 		navigator.mediaDevices
 			.getUserMedia({
 				video: {
-					width: { ideal: 640 },
-					height: { ideal: 480 },
 					frameRate: { ideal: 30 },
 				},
 				audio: false,
@@ -175,12 +173,6 @@ const Canvas = ({
 
 				setLoadingMsg("Drawing detection boxes...");
 				results.forEach(async (result, i) => {
-					const box = resizedDetections[i].detection.box;
-					const drawBox = new faceapi.draw.DrawBox(box, {
-						label: result,
-					});
-					drawBox.draw(canvas);
-
 					const label = result ? result._label : "";
 
 					if (label.toLowerCase() === "unknown") {
