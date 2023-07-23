@@ -7,10 +7,11 @@ const FormGroup = ({
 	labelText,
 	onChangeFunc,
 	inputRef,
+	htmlFor,
 }) => {
 	return (
 		<div className={`form-group${classNameDiv ? ` ${classNameDiv}` : ""}`}>
-			<label>{labelText}</label>
+			<label htmlFor={htmlFor}>{labelText}</label>
 			<input
 				ref={inputRef}
 				className={`form-control${
@@ -20,6 +21,7 @@ const FormGroup = ({
 				onChange={(event) => {
 					onChangeFunc(event.target.value);
 				}}
+				id={htmlFor}
 			></input>
 		</div>
 	);

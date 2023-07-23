@@ -37,11 +37,11 @@ const CourseView = ({
 					inputRef={inputRef}
 				></InputGroup>
 			</form>
-			{searchResults.length === 0 && searchTerm !== "" && (
+			{searchResults?.length === 0 && searchTerm !== "" && (
 				<div className="alert alert-warning">No search results</div>
 			)}
 			<ul className="search-results-container">
-				{searchResults.map((student) => {
+				{searchResults?.map((student) => {
 					const { firstName, lastName, id } = student;
 					return (
 						<li

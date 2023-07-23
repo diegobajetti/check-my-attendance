@@ -41,6 +41,7 @@ export function ProfSignIn({
 							inputRef={emailRef}
 							onChangeFunc={dispatchSetProfEmail}
 							classNameInput="prof-email-input"
+							htmlFor="emailInput"
 						></FormGroup>
 						<FormGroup
 							labelText="Password"
@@ -48,6 +49,7 @@ export function ProfSignIn({
 							type="password"
 							onChangeFunc={dispatchSetProfPassword}
 							classNameInput="prof-password-input"
+							htmlFor="passwordInput"
 						></FormGroup>
 						<button
 							type="submit"
