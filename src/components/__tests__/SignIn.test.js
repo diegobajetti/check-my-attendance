@@ -22,10 +22,10 @@ test("renders both 'Student Sign In' and 'Professor Sign In' cards", () => {
     );
   
     const studentCard = screen.getByText("Student Sign In");
-    const professorCard = screen.getByText("Professor Sign In");
+    const profCard = screen.getByText("Professor Sign In");
   
     expect(studentCard).toBeInTheDocument();
-    expect(professorCard).toBeInTheDocument();
+    expect(profCard).toBeInTheDocument();
 });
 
 test("test student signin card", () => {
@@ -70,8 +70,8 @@ test("displays the correct h3 text inside both cards", () => {
     );
   
     const studentCard = screen.getByText("Student Sign In");
-    const professorCard = screen.getByText("Professor Sign In");
+    const profCard = screen.getByText("Professor Sign In");
   
     expect(studentCard.tagName).toBe("H3");
-    expect(professorCard.tagName).toBe("H3");
+    expect(profCard.tagName).toBe("H3");
 });
