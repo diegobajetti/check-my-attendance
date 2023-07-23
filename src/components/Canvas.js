@@ -69,9 +69,7 @@ const Canvas = ({
 		setLoadingMsg("Loading video...");
 		navigator.mediaDevices
 			.getUserMedia({
-				video: {
-					frameRate: { ideal: 30 },
-				},
+				video: true,
 				audio: false,
 			})
 			.then((stream) => {
