@@ -69,9 +69,7 @@ const Canvas = ({
 		setLoadingMsg("Loading video...");
 		navigator.mediaDevices
 			.getUserMedia({
-				video: {
-					frameRate: { ideal: 30 },
-				},
+				video: true,
 				audio: false,
 			})
 			.then((stream) => {
@@ -94,7 +92,7 @@ const Canvas = ({
 
 	const endVideo = () => {
 		videoRef.current.pause();
-		videoRef.current.srcObject.getTracks()[0].stop();
+		if (videoRef.current.srcObject) videoRef.current.srcObject.getTracks()[0].stop();
 		console.log("endVideo");
 
 		setCaptureVideo(false);
