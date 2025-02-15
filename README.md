@@ -11,7 +11,7 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
 1. Clone the repository by executing the following command.
 
     ```bash
-    git clone https://github.com/diegobajetti/check-my-attendance.git
+    git clone https://github.com/csong202/check-my-attendance.git
     ```
 
 ### 2. Install the required dependencies
@@ -28,11 +28,11 @@ This repository uses the [`gh-pages`][gh-pages] `npm` package to build and deplo
 
 1. Start a local server with the following command.
 
-   ```bash
-   npm start
-   ```
+    ```bash
+    npm start
+    ```
 
-   Executing the command above will open a live server which features hot reloading at the following address: `localhost:3000`.
+    Executing the command above will open a live server which features hot reloading at the following address: `localhost:3000`.
 
 ### 4. Deploy the React app
 
@@ -67,7 +67,7 @@ Since the website is deployed under the [`homepage`][package-json-homepage] URL,
 
             ```css
             * {
-            	background-image: url("https://diegobajetti.github.io/check-my-attendance/images/img-1.jpg");
+            	background-image: url("https://csong202.github.io/check-my-attendance/images/img-1.jpg");
             }
             ```
 
@@ -131,11 +131,11 @@ Upon opening the deployed GitHub Pages site, the page might be blank until refre
 Specifying the `basename={process.env.PUBLIC_URL}` in the routing root allows the router to extract the base URL of the project and properly display the site.
 
 [gh-pages]: https://github.com/gitname/react-gh-pages
-[live-website]: https://diegobajetti.github.io/check-my-attendance/
+[live-website]: https://csong202.github.io/check-my-attendance/
 [npm-doc]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-[package-json-homepage]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L4
-[package-json-predeploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L24
-[package-json-deploy]: https://github.com/diegobajetti/check-my-attendance/blob/master/package.json#L25
-[gh-pages-branch]: https://github.com/diegobajetti/check-my-attendance/tree/gh-pages
-[github-action]: https://github.com/diegobajetti/check-my-attendance/actions
+[package-json-homepage]: https://github.com/csong202/check-my-attendance/blob/master/package.json#L4
+[package-json-predeploy]: https://github.com/csong202/check-my-attendance/blob/master/package.json#L24
+[package-json-deploy]: https://github.com/csong202/check-my-attendance/blob/master/package.json#L25
+[gh-pages-branch]: https://github.com/csong202/check-my-attendance/tree/gh-pages
+[github-action]: https://github.com/csong202/check-my-attendance/actions
 [regex-example]: https://regex101.com/r/iUYcBT/1

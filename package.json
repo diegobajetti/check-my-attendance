@@ -1,7 +1,7 @@
 {
 	"name": "check-my-attendance",
 	"version": "0.1.0",
-	"homepage": "https://diegobajetti.github.io/check-my-attendance/",
+	"homepage": "https://csong202.github.io/check-my-attendance/",
 	"private": true,
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.4.0",
